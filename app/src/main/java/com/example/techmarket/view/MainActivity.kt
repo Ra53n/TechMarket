@@ -2,6 +2,7 @@ package com.example.techmarket.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toolbar
 import com.example.techmarket.R
 import com.example.techmarket.view.auth.AuthFragment
 

@@ -1,8 +1,8 @@
-package com.example.techmarket
+package com.example.techmarket.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.techmarket.ui.main.MainFragment
+import com.example.techmarket.R
 
 class MainActivity : AppCompatActivity() {
 

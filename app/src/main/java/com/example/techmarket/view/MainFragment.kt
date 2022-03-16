@@ -1,4 +1,4 @@
-package com.example.techmarket.ui.main
+package com.example.techmarket.view
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.techmarket.R
+import com.example.techmarket.viewModel.MainViewModel
 
 class MainFragment : Fragment() {
 

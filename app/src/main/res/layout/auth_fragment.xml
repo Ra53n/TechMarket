@@ -9,30 +9,23 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/auth_fragment__iv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/tech_market_logo"
+        style="@style/logo_image_view"
         app:layout_constraintBottom_toTopOf="@+id/auth_fragment__et_login_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/auth_fragment__et_login_name"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:autofillHints="username"
-        android:inputType="textPersonName|textEmailAddress"
+        style="@style/email_edit_text"
         app:layout_constraintBottom_toTopOf="@+id/auth_fragment__et_login_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auth_fragment__iv_logo" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/auth_fragment__et_login_password"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:autofillHints="password"
+        style="@style/password_edit_text"
         app:layout_constraintBottom_toTopOf="@+id/auth_fragment__bt_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,13 +33,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/auth_fragment__bt_login"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
+        style="@style/action_button"
         android:background="@drawable/auth_fragment_bt_login_background"
-        android:padding="16dp"
-        android:text="Login"
-        android:textAlignment="center"
-        android:textSize="24dp"
+        android:text="@string/login_button"
         app:layout_constraintBottom_toTopOf="@id/auth_fragment__tv_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +45,8 @@
         android:id="@+id/auth_fragment__tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
-        android:textSize="16dp"
+        android:text="@string/registration_text_view"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

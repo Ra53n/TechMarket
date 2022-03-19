@@ -7,42 +7,54 @@
     android:clickable="true"
     android:focusable="true">
 
+    <ProgressBar
+        android:id="@+id/reg_fragment__progressBar"
+        android:indeterminate="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        style="?android:attr/progressBarStyleLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/reg_fragment__iv_logo"
         style="@style/logo_image_view"
-        app:layout_constraintBottom_toTopOf="@+id/reg_fragment__et_login_name"
+        app:layout_constraintBottom_toTopOf="@+id/reg_fragment__et_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/reg_fragment__et_login_name"
+        android:id="@+id/reg_fragment__et_email"
         style="@style/email_edit_text"
-        app:layout_constraintBottom_toTopOf="@+id/reg_fragment__et_login_password"
+        app:layout_constraintBottom_toTopOf="@+id/reg_fragment__et_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reg_fragment__iv_logo" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/reg_fragment__et_login_password"
+        android:id="@+id/reg_fragment__et_password"
         style="@style/password_edit_text"
-        app:layout_constraintBottom_toTopOf="@+id/reg_fragment__bt_login"
+        app:layout_constraintBottom_toTopOf="@+id/reg_fragment__bt_registration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_fragment__et_login_name" />
+        app:layout_constraintTop_toBottomOf="@+id/reg_fragment__et_email" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/reg_fragment__bt_login"
+        android:id="@+id/reg_fragment__bt_registration"
         style="@style/action_button"
         android:background="@drawable/reg_fragment_bt_reg_background"
         android:text="@string/registration_button"
-        app:layout_constraintBottom_toTopOf="@id/reg_fragment__tv_register"
+        app:layout_constraintBottom_toTopOf="@id/reg_fragment__tv_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_fragment__et_login_password" />
+        app:layout_constraintTop_toBottomOf="@+id/reg_fragment__et_password" />
 
     <TextView
-        android:id="@+id/reg_fragment__tv_register"
+        android:id="@+id/reg_fragment__tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_text_view"
@@ -50,6 +62,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reg_fragment__bt_login" />
+        app:layout_constraintTop_toBottomOf="@id/reg_fragment__bt_registration" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

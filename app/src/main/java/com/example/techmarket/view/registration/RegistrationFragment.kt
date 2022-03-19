@@ -1,24 +1,30 @@
 package com.example.techmarket.view.registration
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import com.example.techmarket.databinding.AuthFragmentBinding
 import com.example.techmarket.databinding.RegFragmentBinding
-import com.example.techmarket.view.auth.AuthFragment
+import com.example.techmarket.view.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 
-class RegistrationFragment : Fragment() {
+class RegistrationFragment private constructor(private var controller: Controller) :
+    BaseFragment() {
     private var _binding: RegFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var mAuth: FirebaseAuth
+    private val mAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
+    private val handler = Handler(Looper.getMainLooper())
+
+    interface Controller {
+        fun onHasAnAccountClick()
+    }
 
     companion object {
-        fun newInstance() = RegistrationFragment()
+        fun newInstance(controller: Controller) = RegistrationFragment(controller)
     }
 
     override fun onCreateView(
@@ -32,14 +38,23 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding) {
-            regFragmentBtLogin.setOnClickListener {
-                val email = regFragmentEtLoginName.text.toString()
-                val password = regFragmentEtLoginPassword.text.toString()
-                createAccount(email, password)
+        Thread {
+            with(binding) {
+                regFragmentBtRegistration.setOnClickListener {
+                    val email = regFragmentEtEmail.text.toString()
+                    val password = regFragmentEtPassword.text.toString()
+                    createAccount(email, password)
+                }
+                setProgressBar(regFragmentProgressBar)
+                regFragmentTvLogin.setOnClickListener {
+                    showProgressBar()
+                    handler.postDelayed({
+                        controller.onHasAnAccountClick()
+                        hideProgressBar()
+                    }, 1000)
+                }
             }
-        }
-        mAuth = FirebaseAuth.getInstance()
+        }.start()
     }
 
     override fun onDestroy() {
@@ -57,4 +72,5 @@ class RegistrationFragment : Fragment() {
                 }
             }
     }
+
 }

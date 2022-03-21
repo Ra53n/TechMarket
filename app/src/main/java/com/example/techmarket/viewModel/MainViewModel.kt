@@ -1,4 +1,4 @@
-package com.example.techmarket.ui.main
+package com.example.techmarket.viewModel
 
 import androidx.lifecycle.ViewModel
 

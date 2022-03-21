@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="logo_image_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/tech_market_logo</item>
+    </style>
+
+    <style name="email_edit_text">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:hint">Email</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textEmailAddress</item>
+    </style>
+
+    <style name="password_edit_text">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:hint">Password</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="action_button">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+</resources>

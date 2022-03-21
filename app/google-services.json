@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "3389993529",
+    "project_id": "tech-market-8bd06",
+    "storage_bucket": "tech-market-8bd06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3389993529:android:918722fd1c30225e7cd3e8",
+        "android_client_info": {
+          "package_name": "com.example.techmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3389993529-h7c770n9sfik0tkbg015lsdtagogijf7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBThQYG2k9-s8y2G59NMHOQPcy_OKkjhG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3389993529-h7c770n9sfik0tkbg015lsdtagogijf7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

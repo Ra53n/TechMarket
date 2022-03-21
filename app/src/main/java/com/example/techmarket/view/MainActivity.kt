@@ -23,13 +23,26 @@ class MainActivity : AppCompatActivity(), RegistrationFragment.Controller, AuthF
         }
     }
 
-    override fun onHasAnAccountClick() {
+    override fun switchToLogClick() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, authFragment).commit()
     }
 
     override fun onRegistrationClick() {
+        openMainFragment()
+    }
+
+    override fun switchToRegClick() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, registrationFragment).commit()
+    }
+
+    override fun onLoginClick() {
+        openMainFragment()
+    }
+
+    private fun openMainFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, MainFragment.newInstance()).commit()
     }
 }

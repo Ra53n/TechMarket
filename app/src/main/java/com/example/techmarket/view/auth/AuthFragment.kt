@@ -5,14 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.example.techmarket.databinding.AuthFragmentBinding
 import com.example.techmarket.view.BaseFragment
-import com.example.techmarket.view.registration.RegistrationFragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.ktx.Firebase
-import java.util.concurrent.Executors
 
 class AuthFragment private constructor(private var controller: Controller) : BaseFragment() {
 
@@ -23,7 +18,8 @@ class AuthFragment private constructor(private var controller: Controller) : Bas
     private val handler = Handler(Looper.getMainLooper())
 
     interface Controller {
-        fun onRegistrationClick()
+        fun switchToRegClick()
+        fun onLoginClick()
     }
 
     companion object {
@@ -57,7 +53,7 @@ class AuthFragment private constructor(private var controller: Controller) : Bas
                     requireActivity().runOnUiThread {
                         showProgressBar()
                         handler.postDelayed({
-                            controller.onRegistrationClick()
+                            controller.switchToRegClick()
                             hideProgressBar()
                         }, 1000)
                     }
@@ -77,7 +73,7 @@ class AuthFragment private constructor(private var controller: Controller) : Bas
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity()) { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                        controller.onLoginClick()
                     } else {
                         Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show()
                     }

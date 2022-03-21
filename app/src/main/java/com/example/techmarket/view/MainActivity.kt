@@ -1,48 +1,58 @@
 package com.example.techmarket.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toolbar
-import androidx.annotation.MainThread
+import androidx.appcompat.app.AppCompatActivity
 import com.example.techmarket.R
-import com.example.techmarket.view.auth.AuthFragment
-import com.example.techmarket.view.registration.RegistrationFragment
+import com.example.techmarket.databinding.MainActivityBinding
+import com.example.techmarket.view.cart.CartFragment
+import com.example.techmarket.view.profile.ProfileFragment
+import com.google.android.material.navigation.NavigationBarView
 
-class MainActivity : AppCompatActivity(), RegistrationFragment.Controller, AuthFragment.Controller {
+class MainActivity : AppCompatActivity() {
 
-    private val authFragment = AuthFragment.newInstance(this)
-    private val registrationFragment = RegistrationFragment.newInstance(this)
+    private lateinit var binding: MainActivityBinding
+
+    private val mOnNavigationItemSelectedListener =
+        NavigationBarView.OnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
+                    val fragment = MainFragment()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, fragment, fragment.javaClass.simpleName)
+                        .commit()
+                    return@OnItemSelectedListener true
+                }
+                R.id.navigation_cart -> {
+                    val fragment = CartFragment()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, fragment, fragment.javaClass.simpleName)
+                        .commit()
+                    return@OnItemSelectedListener true
+                }
+                R.id.navigation_profile -> {
+                    val fragment = ProfileFragment()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, fragment, fragment.javaClass.simpleName)
+                        .commit()
+                    return@OnItemSelectedListener true
+                }
+            }
+            false
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.container, registrationFragment)
-                .commitNow()
+        binding = MainActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        bindBottomNavigationView()
+    }
+
+    private fun bindBottomNavigationView() {
+        binding.mainActivityNavView.apply {
+            setOnItemSelectedListener(
+                mOnNavigationItemSelectedListener
+            )
         }
     }
 
-    override fun switchToLogClick() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, authFragment).commit()
-    }
-
-    override fun onRegistrationClick() {
-        openMainFragment()
-    }
-
-    override fun switchToRegClick() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, registrationFragment).commit()
-    }
-
-    override fun onLoginClick() {
-        openMainFragment()
-    }
-
-    private fun openMainFragment() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, MainFragment.newInstance()).commit()
-    }
 }

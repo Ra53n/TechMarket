@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.techmarket.databinding.ProfileFragmentBinding
 import com.example.techmarket.view.BaseFragment
-import com.example.techmarket.view.ControllerHolder
+import com.example.techmarket.view.authorization.ControllerHolder
 import com.example.techmarket.viewModel.MainViewModel
 
 class ProfileFragment : BaseFragment() {
@@ -23,6 +23,7 @@ class ProfileFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Object()
         _binding = ProfileFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }

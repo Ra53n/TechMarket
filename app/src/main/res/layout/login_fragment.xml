@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/auth_fragment_background"
+    android:background="@drawable/login_fragment__background"
     android:clickable="true"
     android:focusable="true">
     <ProgressBar
-        android:id="@+id/auth_fragment__progressBar"
+        android:id="@+id/login_fragment__progressBar"
         android:indeterminate="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,41 +19,41 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/auth_fragment__iv_logo"
+        android:id="@+id/login_fragment__iv_logo"
         style="@style/logo_image_view"
-        app:layout_constraintBottom_toTopOf="@+id/auth_fragment__et_email"
+        app:layout_constraintBottom_toTopOf="@+id/login_fragment__et_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/auth_fragment__et_email"
+        android:id="@+id/login_fragment__et_email"
         style="@style/email_edit_text"
-        app:layout_constraintBottom_toTopOf="@+id/auth_fragment__et_password"
+        app:layout_constraintBottom_toTopOf="@+id/login_fragment__et_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auth_fragment__iv_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment__iv_logo" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/auth_fragment__et_password"
+        android:id="@+id/login_fragment__et_password"
         style="@style/password_edit_text"
-        app:layout_constraintBottom_toTopOf="@+id/auth_fragment__bt_login"
+        app:layout_constraintBottom_toTopOf="@+id/login_fragment__bt_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auth_fragment__et_email" />
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment__et_email" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/auth_fragment__bt_login"
+        android:id="@+id/login_fragment__bt_login"
         style="@style/action_button"
-        android:background="@drawable/auth_fragment_bt_login_background"
+        android:background="@drawable/login_fragment_bt_login_background"
         android:text="@string/login_button"
-        app:layout_constraintBottom_toTopOf="@id/auth_fragment__tv_register"
+        app:layout_constraintBottom_toTopOf="@id/login_fragment__tv_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auth_fragment__et_password" />
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment__et_password" />
 
     <TextView
-        android:id="@+id/auth_fragment__tv_register"
+        android:id="@+id/login_fragment__tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registration_text_view"
@@ -61,6 +61,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/auth_fragment__bt_login" />
+        app:layout_constraintTop_toBottomOf="@id/login_fragment__bt_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,17 +1,17 @@
-package com.example.techmarket.view.auth
+package com.example.techmarket.view.authorization.login
 
 import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.techmarket.databinding.AuthFragmentBinding
+import com.example.techmarket.databinding.LoginFragmentBinding
 import com.example.techmarket.view.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 
-class AuthFragment private constructor(private var controller: Controller) : BaseFragment() {
+class LoginFragment private constructor(private var controller: Controller) : BaseFragment() {
 
-    private var _binding: AuthFragmentBinding? = null
+    private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
 
     private val mAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
@@ -23,7 +23,7 @@ class AuthFragment private constructor(private var controller: Controller) : Bas
     }
 
     companion object {
-        fun newInstance(controller: Controller) = AuthFragment(controller)
+        fun newInstance(controller: Controller) = LoginFragment(controller)
     }
 
     override fun onCreateView(
@@ -31,25 +31,25 @@ class AuthFragment private constructor(private var controller: Controller) : Bas
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = AuthFragmentBinding.inflate(inflater, container, false)
+        _binding = LoginFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setProgressBar(binding.authFragmentProgressBar)
+        setProgressBar(binding.loginFragmentProgressBar)
         bindClickListeners()
     }
 
     private fun bindClickListeners() {
         Thread {
             with(binding) {
-                authFragmentBtLogin.setOnClickListener {
-                    val email = authFragmentEtEmail.text.toString()
-                    val password = authFragmentEtPassword.text.toString()
+                loginFragmentBtLogin.setOnClickListener {
+                    val email = loginFragmentEtEmail.text.toString()
+                    val password = loginFragmentEtPassword.text.toString()
                     signIn(email, password)
                 }
-                authFragmentTvRegister.setOnClickListener {
+                loginFragmentTvRegister.setOnClickListener {
                     requireActivity().runOnUiThread {
                         showProgressBar()
                         handler.postDelayed({

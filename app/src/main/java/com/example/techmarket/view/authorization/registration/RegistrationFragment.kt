@@ -1,16 +1,15 @@
-package com.example.techmarket.view.registration
+package com.example.techmarket.view.authorization.registration
 
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.techmarket.databinding.RegFragmentBinding
 import com.example.techmarket.view.BaseFragment
-import com.example.techmarket.view.validateForm
+import com.example.techmarket.view.authorization.validateForm
 import com.google.firebase.auth.FirebaseAuth
 
 class RegistrationFragment private constructor(private var controller: Controller) :

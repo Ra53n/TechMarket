@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.techmarket.R
 import com.example.techmarket.databinding.MainActivityBinding
 import com.example.techmarket.view.cart.CartFragment
+import com.example.techmarket.view.main.MainFragment
 import com.example.techmarket.view.profile.ProfileFragment
 import com.google.android.material.navigation.NavigationBarView
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.techmarket.view.MainFragment"
+        android:name="com.example.techmarket.view.main.MainFragment"
         tools:layout="@layout/main_fragment" />
     <fragment
         android:id="@+id/navigation_cart"

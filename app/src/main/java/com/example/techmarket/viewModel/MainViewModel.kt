@@ -3,8 +3,8 @@ package com.example.techmarket.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.techmarket.model.AppState
-import com.example.techmarket.model.Repository
-import com.example.techmarket.model.RepositoryImpl
+import com.example.techmarket.model.repository.Repository
+import com.example.techmarket.model.repository.RepositoryImpl
 
 class MainViewModel(
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),

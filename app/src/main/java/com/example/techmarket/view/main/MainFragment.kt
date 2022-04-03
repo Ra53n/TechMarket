@@ -46,8 +46,8 @@ class MainFragment : BaseFragment() {
                     orientation = LinearLayoutManager.HORIZONTAL
                 }
             }
-            mainFragmentRecyclerView.adapter = adapter
-            mainFragmentRecyclerView.layoutManager = linearLayout()
+            mainFragmentItemRecyclerView.adapter = adapter
+            mainFragmentItemRecyclerView.layoutManager = linearLayout()
         }
         viewModel.getItemsFromServer()
     }

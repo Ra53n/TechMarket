@@ -1,4 +1,6 @@
-package com.example.techmarket.model
+package com.example.techmarket.model.repository
+
+import com.example.techmarket.model.Item
 
 class RepositoryImpl : Repository {
     override fun getMenuItems(): List<Item> {

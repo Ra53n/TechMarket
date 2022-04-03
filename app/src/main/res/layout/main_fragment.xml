@@ -16,7 +16,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/main_fragment_recycler_view"
+            android:id="@+id/main_fragment__category_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:orientation="horizontal"
+            app:reverseLayout="true" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_fragment__item_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="330dp"
             android:orientation="horizontal"

@@ -6,17 +6,18 @@
     android:background="@drawable/login_fragment__background"
     android:clickable="true"
     android:focusable="true">
+
     <ProgressBar
         android:id="@+id/login_fragment__progressBar"
-        android:indeterminate="true"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:indeterminate="true"
         android:visibility="invisible"
-        style="?android:attr/progressBarStyleLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/login_fragment__iv_logo"

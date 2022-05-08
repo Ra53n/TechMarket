@@ -1,4 +1,4 @@
-package com.example.techmarket.model
+package com.example.techmarket.data
 
 data class Item(
     val description: String,

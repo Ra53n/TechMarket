@@ -1,10 +1,9 @@
-package com.example.techmarket.view
+package com.example.techmarket.presentation.view
 
-import android.view.View
 import android.widget.ProgressBar
-import androidx.fragment.app.Fragment
+import com.arellomobile.mvp.MvpAppCompatFragment
 
-open class BaseFragment : Fragment() {
+open class BaseFragment : MvpAppCompatFragment() {
 
     private var progressBar: ProgressBar? = null
 

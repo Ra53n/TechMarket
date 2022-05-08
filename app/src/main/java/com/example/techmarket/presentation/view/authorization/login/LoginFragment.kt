@@ -1,12 +1,14 @@
-package com.example.techmarket.view.authorization.login
+package com.example.techmarket.presentation.view.authorization.login
 
-import android.os.*
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.techmarket.databinding.LoginFragmentBinding
-import com.example.techmarket.view.BaseFragment
+import com.example.techmarket.presentation.view.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment private constructor(private var controller: Controller) : BaseFragment() {

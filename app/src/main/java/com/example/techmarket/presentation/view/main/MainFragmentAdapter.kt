@@ -1,4 +1,4 @@
-package com.example.techmarket.view.main
+package com.example.techmarket.presentation.view.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.techmarket.R
-import com.example.techmarket.model.Item
+import com.example.techmarket.data.Item
 
 class MainFragmentAdapter :
     RecyclerView.Adapter<MainFragmentAdapter.MainFragmentViewHolder>() {

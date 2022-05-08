@@ -1,16 +1,22 @@
-package com.example.techmarket.view.main
+package com.example.techmarket.presentation.view.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.example.techmarket.APP_SCOPE
+import com.example.techmarket.data.Item
 import com.example.techmarket.databinding.MainFragmentBinding
-import com.example.techmarket.model.AppState
-import com.example.techmarket.view.BaseFragment
-import com.example.techmarket.viewModel.MainViewModel
+import com.example.techmarket.presentation.presenter.MainPresenter
+import com.example.techmarket.presentation.view.BaseFragment
+import toothpick.Toothpick
 
-class MainFragment : BaseFragment() {
+const val MAIN_SCOPE = "MAIN_SCOPE"
+
+class MainFragment : BaseFragment(), MainView {
 
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
@@ -20,7 +26,15 @@ class MainFragment : BaseFragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    @InjectPresenter
+    lateinit var presenter: MainPresenter
+
+    @ProvidePresenter
+    fun provideMainPresenter(): MainPresenter =
+        Toothpick.openScopes(APP_SCOPE, MAIN_SCOPE)
+            .getInstance(MainPresenter::class.java)
+            .also { Toothpick.closeScope(MAIN_SCOPE) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +52,6 @@ class MainFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = MainViewModel()
-        viewModel.getData().observe(viewLifecycleOwner, { renderData(it) })
         with(binding) {
             val linearLayout = {
                 LinearLayoutManager(context).apply {
@@ -49,15 +61,11 @@ class MainFragment : BaseFragment() {
             mainFragmentItemRecyclerView.adapter = adapter
             mainFragmentItemRecyclerView.layoutManager = linearLayout()
         }
-        viewModel.getItemsFromServer()
+        presenter.getItemsFromServer()
     }
 
-    private fun renderData(appState: AppState) {
-        when (appState) {
-            is AppState.Success -> {
-                adapter.setItems(appState.itemList)
-            }
-        }
+    override fun renderData(list: List<Item>) {
+        adapter.setItems(list)
     }
 
 }

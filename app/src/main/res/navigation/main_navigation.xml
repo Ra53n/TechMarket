@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.techmarket.view.main.MainFragment"
+        android:name="com.example.techmarket.presentation.view.main.MainFragment"
         tools:layout="@layout/main_fragment" />
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.example.techmarket.view.cart.CartFragment"
+        android:name="com.example.techmarket.presentation.view.cart.CartFragment"
         tools:layout="@layout/cart_fragment" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.techmarket.view.profile.ProfileFragment"
+        android:name="com.example.techmarket.presentation.view.profile.ProfileFragment"
         tools:layout="@layout/profile_fragment" />
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.techmarket.view.authorization
+package com.example.techmarket.presentation.view.authorization
 
 import android.text.TextUtils
 

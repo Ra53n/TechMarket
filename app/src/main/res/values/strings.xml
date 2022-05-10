@@ -4,4 +4,7 @@
     <string name="login_button">Login</string>
     <string name="registration_text_view">Registration</string>
     <string name="login_text_view">Already has an account?</string>
+    <string name="navigation_menu_item_home">Главная</string>
+    <string name="navigation_menu_item_cart">Корзина</string>
+    <string name="navigation_menu_item_profile">Профиль</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.techmarket.presentation.view.main
+package com.example.techmarket.presentation.view.adapters
 
 import android.view.LayoutInflater
 import android.view.View

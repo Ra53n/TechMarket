@@ -5,6 +5,7 @@ import com.example.techmarket.presentation.view.authorization.ControllerHolder
 import com.example.techmarket.presentation.view.authorization.login.LoginFragment
 import com.example.techmarket.presentation.view.authorization.registration.RegistrationFragment
 import com.example.techmarket.presentation.view.cart.CartFragment
+import com.example.techmarket.presentation.view.catalog.CatalogFragment
 import com.example.techmarket.presentation.view.main.MainFragment
 import com.example.techmarket.presentation.view.profile.ProfileFragment
 import com.github.terrakok.cicerone.androidx.FragmentScreen
@@ -35,5 +36,9 @@ object Screens {
 
     fun add() = FragmentScreen {
         AddItemFragment.newInstance()
+    }
+
+    fun catalog() = FragmentScreen {
+        CatalogFragment.newInstance()
     }
 }

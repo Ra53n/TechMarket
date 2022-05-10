@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="phones_and_gadgets">
+        <item>Смартфоны и гаджеты</item>
+        <item>Планшеты, электронные книги</item>
+        <item>Фототехника</item>
+    </string-array>
+    <string-array name="computers">
+        <item>Компьютеры, ноутбуки и ПО</item>
+        <item>Комплектующие для ПК</item>
+        <item>Переферия и аксессуары</item>
+    </string-array>
+    <string-array name="appliances">
+        <item>Бытовая техника</item>
+        <item>Техника для кухни</item>
+        <item>Техника для дома</item>
+    </string-array>
+    <string-array name="office">
+        <item>Офисное оборудование</item>
+        <item>Канцелярия</item>
+    </string-array>
+</resources>

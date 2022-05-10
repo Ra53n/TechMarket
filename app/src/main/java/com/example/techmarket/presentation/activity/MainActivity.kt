@@ -1,9 +1,10 @@
-package com.example.techmarket.presentation.view
+package com.example.techmarket.presentation.activity
 
 import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.R
+import com.example.techmarket.Screens.add
 import com.example.techmarket.Screens.cart
 import com.example.techmarket.Screens.main
 import com.example.techmarket.Screens.profile
@@ -45,6 +46,10 @@ class MainActivity : MvpAppCompatActivity() {
                 }
                 R.id.navigation_profile -> {
                     router.replaceScreen(profile())
+                    return@OnItemSelectedListener true
+                }
+                R.id.navigation_add -> {
+                    router.replaceScreen(add())
                     return@OnItemSelectedListener true
                 }
             }

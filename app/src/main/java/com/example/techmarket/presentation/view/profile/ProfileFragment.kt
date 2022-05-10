@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.techmarket.databinding.ProfileFragmentBinding
-import com.example.techmarket.presentation.view.BaseFragment
 import com.example.techmarket.presentation.view.authorization.ControllerHolder
+import com.example.techmarket.presentation.view.base.BaseFragment
 
-class ProfileFragment : BaseFragment(),ProfileView {
+class ProfileFragment : BaseFragment(), ProfileView {
     private var _binding: ProfileFragmentBinding? = null
     private val binding get() = _binding!!
 

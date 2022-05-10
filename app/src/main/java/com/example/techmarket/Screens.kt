@@ -1,5 +1,6 @@
 package com.example.techmarket
 
+import com.example.techmarket.presentation.view.addItem.AddItemFragment
 import com.example.techmarket.presentation.view.authorization.ControllerHolder
 import com.example.techmarket.presentation.view.authorization.login.LoginFragment
 import com.example.techmarket.presentation.view.authorization.registration.RegistrationFragment
@@ -30,5 +31,9 @@ object Screens {
 
     fun registration() = FragmentScreen {
         RegistrationFragment.newInstance(controllerHolder)
+    }
+
+    fun add() = FragmentScreen {
+        AddItemFragment.newInstance()
     }
 }

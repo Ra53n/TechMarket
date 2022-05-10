@@ -1,4 +1,4 @@
-package com.example.techmarket.presentation.view
+package com.example.techmarket.presentation.view.base
 
 import android.widget.ProgressBar
 import com.arellomobile.mvp.MvpAppCompatFragment

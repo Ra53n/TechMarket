@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="160dp"
     android:layout_height="320dp"
     android:layout_margin="8dp"
@@ -19,9 +20,10 @@
             android:src="@drawable/heart" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_recycler_view_item_image"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:src="@drawable/img" />
+            tools:src="@drawable/img" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -47,7 +49,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/main_recycler_view_item_description"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="8dp"
             android:text="6.7 Смартфон Apple iPhone 13 Pro Max 256 ГБ голубой "
             android:textSize="12dp" />

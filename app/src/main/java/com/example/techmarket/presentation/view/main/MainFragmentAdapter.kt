@@ -3,8 +3,10 @@ package com.example.techmarket.presentation.view.main
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.techmarket.R
 import com.example.techmarket.data.Item
 
@@ -34,6 +36,7 @@ class MainFragmentAdapter :
             with(itemView) {
                 findViewById<TextView>(R.id.main_recycler_view_item_rating).text =
                     item.rating.toString()
+                findViewById<ImageView>(R.id.main_recycler_view_item_image).load(item.imageUrl)
                 findViewById<TextView>(R.id.main_recycler_view_item_description).text =
                     item.description
                 findViewById<TextView>(R.id.main_recycler_view_item_price).text =

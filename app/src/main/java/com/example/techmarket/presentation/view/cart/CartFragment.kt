@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.techmarket.databinding.CartFragmentBinding
-import com.example.techmarket.presentation.view.BaseFragment
+import com.example.techmarket.presentation.view.base.BaseFragment
 
 class CartFragment : BaseFragment() {
     private var _binding: CartFragmentBinding? = null

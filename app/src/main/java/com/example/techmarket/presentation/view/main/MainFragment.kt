@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.techmarket.APP_SCOPE
+import com.example.techmarket.data.Category
 import com.example.techmarket.data.Item
+import com.example.techmarket.data.Promotion
 import com.example.techmarket.databinding.MainFragmentBinding
 import com.example.techmarket.presentation.presenter.MainPresenter
-import com.example.techmarket.presentation.view.BaseFragment
+import com.example.techmarket.presentation.view.CategoryAdapter
+import com.example.techmarket.presentation.view.PromotionAdapter
+import com.example.techmarket.presentation.view.base.BaseFragment
 import toothpick.Toothpick
 
 const val MAIN_SCOPE = "MAIN_SCOPE"
@@ -21,6 +25,8 @@ class MainFragment : BaseFragment(), MainView {
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
     private val adapter = MainFragmentAdapter()
+    private lateinit var promotionAdapter: PromotionAdapter
+    private val categoryAdapter = CategoryAdapter()
 
     companion object {
         fun newInstance() = MainFragment()
@@ -60,12 +66,27 @@ class MainFragment : BaseFragment(), MainView {
             }
             mainFragmentItemRecyclerView.adapter = adapter
             mainFragmentItemRecyclerView.layoutManager = linearLayout()
+            promotionAdapter = PromotionAdapter(presenter::navigateToWeb)
+            mainFragmentPromotionRecyclerView.adapter = promotionAdapter
+            mainFragmentPromotionRecyclerView.layoutManager = linearLayout()
+            mainFragmentCategoryRecyclerView.adapter = categoryAdapter
+            mainFragmentCategoryRecyclerView.layoutManager = linearLayout()
         }
         presenter.getItemsFromServer()
+        presenter.loadPromotions()
+        presenter.loadCategories()
     }
 
-    override fun renderData(list: List<Item>) {
+    override fun loadItems(list: List<Item>) {
         adapter.setItems(list)
+    }
+
+    override fun loadPromotions(list: List<Promotion>) {
+        promotionAdapter.setItems(list)
+    }
+
+    override fun loadCategories(list: List<Category>) {
+        categoryAdapter.setItems(list)
     }
 
 }

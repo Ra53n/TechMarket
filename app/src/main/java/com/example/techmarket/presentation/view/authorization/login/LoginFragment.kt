@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.techmarket.databinding.LoginFragmentBinding
-import com.example.techmarket.presentation.view.BaseFragment
+import com.example.techmarket.presentation.view.base.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment private constructor(private var controller: Controller) : BaseFragment() {

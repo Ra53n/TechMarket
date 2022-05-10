@@ -1,30 +1,15 @@
 package com.example.techmarket.data.repository
 
-import com.example.techmarket.data.Item
+import com.example.techmarket.data.Category
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class RepositoryImpl : Repository {
-    override fun getMenuItems(): List<Item> {
-        return listOf(
-            Item(
-                "6.7 Смартфон Apple iPhone 13 Pro " +
-                        "Max 256 ГБ голубой", 1.9, 179_999
-            ),
-            Item(
-                "6.7 Смартфон Apple iPhone 13 Pro " +
-                        "Max 256 ГБ голубой", 2.9, 179_999
-            ),
-            Item(
-                "6.7 Смартфон Apple iPhone 13 Pro " +
-                        "Max 256 ГБ голубой", 3.9, 179_999
-            ),
-            Item(
-                "6.7 Смартфон Apple iPhone 13 Pro " +
-                        "Max 256 ГБ голубой", 4.9, 179_999
-            ),
-            Item(
-                "6.7 Смартфон Apple iPhone 13 Pro " +
-                        "Max 256 ГБ голубой", 5.9, 179_999
-            )
-        )
-    }
+
+    private val database = Firebase.database.reference
+
+    override fun getMenuItems() = database.child("items").get()
+
+    override fun getPromotions() = database.child("promotions").get()
+    override fun getCategories() = listOf(Category.Computer,Category.Phone,Category.Appliance,Category.Entertainment,Category.Office)
 }

@@ -10,6 +10,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         Toothpick.openScope(APP_SCOPE)
-            .installModules(AppModule())
+            .installModules(AppModule(this))
     }
 }

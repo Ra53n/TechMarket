@@ -7,4 +7,20 @@
     <string name="navigation_menu_item_home">Главная</string>
     <string name="navigation_menu_item_cart">Корзина</string>
     <string name="navigation_menu_item_profile">Профиль</string>
+
+    <string name="smartphones">Smartphones</string>
+    <string name="tablets">Tablets</string>
+    <string name="phototechnics">Phototechnics</string>
+
+    <string name="computers">Computers</string>
+    <string name="processors">Processors</string>
+    <string name="graphics_cards">Graphics cards</string>
+
+    <string name="appliances">Appliances</string>
+    <string name="washing_machines">Washing machines</string>
+    <string name="irons">Irons</string>
+    <string name="hairdryers">Hairdryer</string>
+
+    <string name="office_equipment">Office equipment</string>
+    <string name="printers">Printers</string>
 </resources>

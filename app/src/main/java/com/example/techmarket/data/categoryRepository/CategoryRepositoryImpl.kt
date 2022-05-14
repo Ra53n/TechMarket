@@ -1,10 +1,11 @@
 package com.example.techmarket.data.categoryRepository
 
+import com.example.techmarket.data.Category
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class CategoryRepositoryImpl: CategoryRepository {
     private val database = Firebase.database.reference
 
-    override fun getPhoneFields() = database.child("category").child("Phone").get()
+    override fun getFields(category: Category) = database.child("category").child(category.category).get()
 }

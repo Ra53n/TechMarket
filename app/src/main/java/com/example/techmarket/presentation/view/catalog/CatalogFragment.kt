@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import com.example.techmarket.R
+import android.widget.Adapter
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.techmarket.databinding.CatalogFragmentBinding
+import com.example.techmarket.presentation.presenter.CatalogPresenter
 import com.example.techmarket.presentation.view.base.BaseFragment
 
 class CatalogFragment : BaseFragment(), CatalogView {
@@ -16,6 +17,9 @@ class CatalogFragment : BaseFragment(), CatalogView {
     companion object {
         fun newInstance() = CatalogFragment()
     }
+
+    @InjectPresenter
+    lateinit var presenter: CatalogPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,11 +40,11 @@ class CatalogFragment : BaseFragment(), CatalogView {
         bindAdapters()
     }
 
-    private fun bindAdapters(){
-        val adapterHolder = CatalogSpinnerAdapterHolder(requireContext())
-        binding.spinnerPhoneCategory.adapter = adapterHolder.phonesAdapter
-        binding.spinnerComputerCategory.adapter = adapterHolder.computerAdapter
-        binding.spinnerAppliancesCategory.adapter = adapterHolder.appliancesAdapter
-        binding.spinnerOfficeCategory.adapter = adapterHolder.officeAdapter
+    private fun bindAdapters() {
+        val adapterHolder = CatalogClickListenerHolder(requireContext())
+        binding.buttonPhoneCategory.setOnClickListener(adapterHolder.phonesClickListener)
+        binding.buttonComputerCategory.setOnClickListener (adapterHolder.computersClickListener)
+        binding.buttonAppliancesCategory.setOnClickListener(adapterHolder.appliancesClickListener)
+        binding.buttonOfficeCategory.setOnClickListener(adapterHolder.officeClickListener)
     }
 }

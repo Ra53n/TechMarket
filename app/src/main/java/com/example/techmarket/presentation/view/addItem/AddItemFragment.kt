@@ -33,7 +33,6 @@ class AddItemFragment : BaseFragment(), AddItemView {
     @InjectPresenter
     lateinit var presenter: AddItemPresenter
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +52,7 @@ class AddItemFragment : BaseFragment(), AddItemView {
         database = Firebase.database.reference
         binding.buttonAdd.setOnClickListener {
             database.child("items").push().setValue(getItemFromFields())
-//            database.child("category").child(Category.Phone.toString())
+//            database.child("category").child(Category.Smartphones.toString())
 //                .setValue(
 //                    listOf(
 //                        "Модель",
@@ -86,14 +85,10 @@ class AddItemFragment : BaseFragment(), AddItemView {
                         Category.Uncategory -> {
                             binding.characteristicContainer.removeAllViews()
                         }
-                        Category.Phone -> {
+                        else -> {
                             binding.characteristicContainer.removeAllViews()
-                            presenter.getPhoneFields()
+                            presenter.getFields(category)
                         }
-                        Category.Computer -> TODO()
-                        Category.Appliance -> TODO()
-                        Category.Office -> TODO()
-                        Category.Entertainment -> TODO()
                     }
                 }
 
@@ -116,9 +111,9 @@ class AddItemFragment : BaseFragment(), AddItemView {
             binding.editTextImageUrl.text.toString(),
             0.0,
             binding.editTextImagePrice.text.toString().toInt(),
+            category = binding.spinnerCategory.selectedItem as Category,
             characteristic = map
         )
-//        (binding.characteristicContainer.getChildAt(0) as EditText).text.toString()
         return item
     }
 

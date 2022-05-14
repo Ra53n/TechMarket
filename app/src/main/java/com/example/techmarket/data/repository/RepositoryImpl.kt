@@ -11,5 +11,5 @@ class RepositoryImpl : Repository {
     override fun getMenuItems() = database.child("items").get()
 
     override fun getPromotions() = database.child("promotions").get()
-    override fun getCategories() = listOf(Category.Computer,Category.Phone,Category.Appliance,Category.Entertainment,Category.Office)
+    override fun getCategories() = listOf(Category.Computers,Category.Smartphones,Category.Appliances,Category.OfficeEquipment)
 }

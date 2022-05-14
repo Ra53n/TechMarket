@@ -11,17 +11,24 @@
 
         <ImageView
             style="@style/catalog_icon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:src="@drawable/ic_baseline_phone_iphone_24" />
 
-        <Spinner
-            android:id="@+id/spinner_phone_category"
-            android:layout_width="match_parent"
+        <TextView
+            style="@style/catalog_textview"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:paddingStart="16dp" />
+            android:layout_weight="7"
+            android:text="@string/smartphones" />
+
+        <Button
+            android:id="@+id/button_phone_category"
+            style="@style/catalog_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -32,15 +39,24 @@
 
         <ImageView
             style="@style/catalog_icon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:src="@drawable/ic_baseline_computer_24" />
 
-        <Spinner
-            android:id="@+id/spinner_computer_category"
-            android:layout_width="match_parent"
+        <TextView
+            style="@style/catalog_textview"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingStart="16dp"/>
+            android:layout_weight="7"
+            android:text="@string/computers" />
+
+        <Button
+            android:id="@+id/button_computer_category"
+            style="@style/catalog_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -51,15 +67,24 @@
 
         <ImageView
             style="@style/catalog_icon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:src="@drawable/ic_baseline_local_laundry_service_24" />
 
-        <Spinner
-            android:id="@+id/spinner_appliances_category"
-            android:layout_width="match_parent"
+        <TextView
+            style="@style/catalog_textview"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingStart="16dp"/>
+            android:layout_weight="7"
+            android:text="@string/appliances" />
+
+        <Button
+            android:id="@+id/button_appliances_category"
+            style="@style/catalog_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -70,15 +95,24 @@
 
         <ImageView
             style="@style/catalog_icon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:src="@drawable/ic_baseline_local_printshop_24" />
 
-        <Spinner
-            android:id="@+id/spinner_office_category"
-            android:layout_width="match_parent"
+        <TextView
+            style="@style/catalog_textview"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingStart="16dp"/>
+            android:layout_weight="7"
+            android:text="@string/office_equipment" />
+
+        <Button
+            android:id="@+id/button_office_category"
+            style="@style/catalog_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

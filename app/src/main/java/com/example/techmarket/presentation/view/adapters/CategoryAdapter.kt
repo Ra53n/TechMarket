@@ -34,11 +34,10 @@ class CategoryAdapter :
         fun bind(category: Category) {
             with(itemView.findViewById<ImageView>(R.id.image)) {
                 when (category) {
-                    Category.Computer -> setImageResource(R.drawable.ic_baseline_computer_24)
-                    Category.Phone -> setImageResource(R.drawable.ic_baseline_phone_iphone_24)
-                    Category.Appliance -> setImageResource(R.drawable.ic_baseline_local_laundry_service_24)
-                    Category.Office -> setImageResource(R.drawable.ic_baseline_local_printshop_24)
-                    Category.Entertainment -> setImageResource(R.drawable.ic_baseline_sports_esports_24)
+                    Category.Computers -> setImageResource(R.drawable.ic_baseline_computer_24)
+                    Category.Smartphones -> setImageResource(R.drawable.ic_baseline_phone_iphone_24)
+                    Category.Appliances -> setImageResource(R.drawable.ic_baseline_local_laundry_service_24)
+                    Category.OfficeEquipment -> setImageResource(R.drawable.ic_baseline_local_printshop_24)
                 }
             }
         }

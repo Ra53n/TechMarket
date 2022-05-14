@@ -13,8 +13,9 @@ import com.example.techmarket.data.Item
 import com.example.techmarket.data.Promotion
 import com.example.techmarket.databinding.MainFragmentBinding
 import com.example.techmarket.presentation.presenter.MainPresenter
-import com.example.techmarket.presentation.view.CategoryAdapter
-import com.example.techmarket.presentation.view.PromotionAdapter
+import com.example.techmarket.presentation.view.adapters.CategoryAdapter
+import com.example.techmarket.presentation.view.adapters.MainFragmentAdapter
+import com.example.techmarket.presentation.view.adapters.PromotionAdapter
 import com.example.techmarket.presentation.view.base.BaseFragment
 import toothpick.Toothpick
 

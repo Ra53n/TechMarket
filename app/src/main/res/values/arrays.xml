@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="phones_and_gadgets">
+        <item>@string/smartphones</item>
+        <item>@string/tablets</item>
+        <item>@string/phototechnics</item>
+    </string-array>
+    <string-array name="computers">
+        <item>@string/computers</item>
+        <item>@string/processors</item>
+        <item>@string/graphics_cards</item>
+    </string-array>
+    <string-array name="appliances">
+        <item>@string/washing_machines</item>
+        <item>@string/irons</item>
+        <item>@string/hairdryers</item>
+    </string-array>
+    <string-array name="office">
+        <item>@string/printers</item>
+    </string-array>
+</resources>

@@ -6,6 +6,7 @@ import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.R
 import com.example.techmarket.Screens.add
 import com.example.techmarket.Screens.cart
+import com.example.techmarket.Screens.catalog
 import com.example.techmarket.Screens.main
 import com.example.techmarket.Screens.profile
 import com.example.techmarket.databinding.MainActivityBinding
@@ -50,6 +51,11 @@ class MainActivity : MvpAppCompatActivity() {
                 }
                 R.id.navigation_add -> {
                     router.replaceScreen(add())
+                    return@OnItemSelectedListener true
+                }
+
+                R.id.navigation_catalog ->{
+                    router.replaceScreen(catalog())
                     return@OnItemSelectedListener true
                 }
             }

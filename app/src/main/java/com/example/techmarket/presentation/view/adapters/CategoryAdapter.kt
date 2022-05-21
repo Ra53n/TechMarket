@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.techmarket.R
-import com.example.techmarket.data.Category
+import com.example.techmarket.data.entities.Category
 
 class CategoryAdapter :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {

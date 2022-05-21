@@ -11,6 +11,11 @@
         android:title="Каталог" />
 
     <item
+        android:id="@+id/navigation_likes"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="Избранное" />
+
+    <item
         android:id="@+id/navigation_cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="@string/navigation_menu_item_cart" />
@@ -20,7 +25,4 @@
         android:icon="@drawable/ic_baseline_person_outline_24"
         android:title="@string/navigation_menu_item_profile" />
 
-    <item
-        android:id="@+id/navigation_add"
-        android:title="Добавить" />
 </menu>

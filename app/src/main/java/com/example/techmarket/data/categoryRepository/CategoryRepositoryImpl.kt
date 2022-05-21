@@ -1,6 +1,6 @@
 package com.example.techmarket.data.categoryRepository
 
-import com.example.techmarket.data.Category
+import com.example.techmarket.data.entities.Category
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 

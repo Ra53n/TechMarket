@@ -2,12 +2,12 @@ package com.example.techmarket.presentation.presenter
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.techmarket.data.Item
-import com.example.techmarket.data.Promotion
+import com.example.techmarket.data.entities.Item
+import com.example.techmarket.data.entities.Promotion
 import com.example.techmarket.data.repository.RepositoryImpl
+import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.presentation.view.main.MainView
 import com.github.terrakok.cicerone.Router
 import com.google.firebase.database.ktx.getValue
@@ -22,9 +22,12 @@ class MainPresenter : MvpPresenter<MainView>() {
     @Inject
     lateinit var router: Router
 
+    @Inject
+    lateinit var localRepository: LocalRepositoryImpl
+
     fun getItemsFromServer() {
         repository.getMenuItems().addOnSuccessListener {
-            it.getValue<HashMap<String,Item>>()?.let {
+            it.getValue<HashMap<String, Item>>()?.let {
                 viewState.loadItems(it.values.toList())
             }
         }
@@ -43,5 +46,17 @@ class MainPresenter : MvpPresenter<MainView>() {
     fun navigateToWeb(url: String) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         viewState.startActivity(browserIntent)
+    }
+
+    fun likeItem(item: Item) {
+        Thread {
+            localRepository.likeItem(item)
+        }.start()
+    }
+
+    fun addToCart(item: Item) {
+        Thread {
+            localRepository.addItemToCart(item)
+        }.start()
     }
 }

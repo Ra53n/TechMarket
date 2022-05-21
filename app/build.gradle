@@ -24,6 +24,13 @@ android {
         viewBinding true
     }
 
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("password.properties").newDataInputStream())
+        def password = properties.getProperty("password", "")
+        it.buildConfigField "String", "EMAIL_PASSWORD", password
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -40,6 +47,10 @@ android {
 }
 
 dependencies {
+    //javax.mail
+    implementation 'com.sun.mail:android-mail:1.6.2'
+    implementation 'com.sun.mail:android-activation:1.6.2'
+
     //coil
     implementation("io.coil-kt:coil:2.0.0-rc03")
 
@@ -50,12 +61,17 @@ dependencies {
     implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:3.1.0'
     implementation 'com.github.stephanenicolas.toothpick:smoothie-androidx:3.1.0'
     implementation 'com.github.stephanenicolas.toothpick:ktp:3.1.0'
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
     kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
 
     //moxy
     implementation 'tech.schoolhelper:moxy-x:1.7.0'
     kapt 'tech.schoolhelper:moxy-x-compiler:1.7.0'
     implementation 'tech.schoolhelper:moxy-x-androidx:1.7.0'
+
+    //room
+    implementation 'androidx.room:room-runtime:2.4.2'
+    kapt 'androidx.room:room-compiler:2.4.2'
 
     //firebase
     implementation platform('com.google.firebase:firebase-bom:30.0.0')
@@ -64,6 +80,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.firebase:firebase-auth:21.0.3'
 
+    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'

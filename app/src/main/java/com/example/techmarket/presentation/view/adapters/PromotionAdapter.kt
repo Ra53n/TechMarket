@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.techmarket.R
-import com.example.techmarket.data.Promotion
+import com.example.techmarket.data.entities.Promotion
 
 class PromotionAdapter(val navigateToWeb: (url: String) -> Unit) :
     RecyclerView.Adapter<PromotionAdapter.PromotionViewHolder>() {

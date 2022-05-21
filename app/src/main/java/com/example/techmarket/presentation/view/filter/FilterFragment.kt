@@ -5,22 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.example.techmarket.APP_SCOPE
-import com.example.techmarket.data.Category
-import com.example.techmarket.data.Item
+import com.example.techmarket.data.entities.Category
+import com.example.techmarket.data.entities.Item
 import com.example.techmarket.databinding.FilterFragmentBinding
 import com.example.techmarket.presentation.presenter.FilterPresenter
 import com.example.techmarket.presentation.view.adapters.FilterAdapter
 import com.example.techmarket.presentation.view.base.BaseFragment
-import toothpick.Toothpick
 
 class FilterFragment(private val category: Category) : BaseFragment(), FilterView {
     private var _binding: FilterFragmentBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var adapter: FilterAdapter
+    private val controller = object : FilterAdapter.Controller{
+        override fun likeItem(item: Item) {
+            presenter.likeItem(item)
+        }
+
+    }
 
     @InjectPresenter
     lateinit var presenter: FilterPresenter
@@ -46,7 +49,7 @@ class FilterFragment(private val category: Category) : BaseFragment(), FilterVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = FilterAdapter()
+        adapter = FilterAdapter(controller)
         binding.filterFragmentRecyclerView.adapter = adapter
         binding.filterFragmentRecyclerView.layoutManager = LinearLayoutManager(context)
         presenter.loadByCategory(category)

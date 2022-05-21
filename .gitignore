@@ -5,6 +5,7 @@
 .DS_Store
 /build
 /captures
+/password.properties
 .externalNativeBuild
 .cxx
 local.properties

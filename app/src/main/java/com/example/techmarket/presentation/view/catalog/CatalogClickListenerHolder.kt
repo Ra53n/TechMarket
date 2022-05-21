@@ -7,7 +7,7 @@ import android.widget.PopupMenu
 import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.R
 import com.example.techmarket.Screens.filter
-import com.example.techmarket.data.Category
+import com.example.techmarket.data.entities.Category
 import com.github.terrakok.cicerone.Router
 import toothpick.Toothpick
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.example.techmarket.data
+package com.example.techmarket.data.entities
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

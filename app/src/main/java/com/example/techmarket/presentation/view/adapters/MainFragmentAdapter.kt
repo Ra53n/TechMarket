@@ -3,15 +3,23 @@ package com.example.techmarket.presentation.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.techmarket.R
-import com.example.techmarket.data.Item
+import com.example.techmarket.data.entities.Item
 
-class MainFragmentAdapter :
+class MainFragmentAdapter(private val controller: Controller) :
     RecyclerView.Adapter<MainFragmentAdapter.MainFragmentViewHolder>() {
+
+    interface Controller {
+        fun onLikeItem(item: Item)
+        fun onItemClick(item: Item)
+        fun addToCart(item: Item)
+    }
+
     private var data: List<Item> = listOf()
 
     fun setItems(data: List<Item>) {
@@ -41,6 +49,8 @@ class MainFragmentAdapter :
                     item.description
                 findViewById<TextView>(R.id.main_recycler_view_item_price).text =
                     (item.price.toString() + " ₽")
+                findViewById<ImageView>(R.id.main_recycler_view_item_like).setOnClickListener { controller.onLikeItem(item) }
+                findViewById<Button>(R.id.main_recycler_view_item_add_to_cart).setOnClickListener { controller.addToCart(item) }
             }
         }
     }

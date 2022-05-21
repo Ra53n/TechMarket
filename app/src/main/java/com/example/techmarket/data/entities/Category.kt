@@ -1,4 +1,4 @@
-package com.example.techmarket.data
+package com.example.techmarket.data.entities
 
 enum class Category(val category: String) {
     Uncategory("Uncategory"),

@@ -1,16 +1,14 @@
 package com.example.techmarket.presentation.view.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.techmarket.APP_SCOPE
-import com.example.techmarket.data.Category
-import com.example.techmarket.data.Item
-import com.example.techmarket.data.Promotion
+import com.example.techmarket.data.entities.Category
+import com.example.techmarket.data.entities.Item
+import com.example.techmarket.data.entities.Promotion
 import com.example.techmarket.databinding.MainFragmentBinding
 import com.example.techmarket.presentation.presenter.MainPresenter
 import com.example.techmarket.presentation.view.adapters.CategoryAdapter
@@ -25,7 +23,21 @@ class MainFragment : BaseFragment(), MainView {
 
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
-    private val adapter = MainFragmentAdapter()
+    private val controller = object :MainFragmentAdapter.Controller{
+        override fun onLikeItem(item: Item) {
+            presenter.likeItem(item)
+        }
+
+        override fun onItemClick(item: Item) {
+            TODO("Not yet implemented")
+        }
+
+        override fun addToCart(item: Item) {
+            presenter.addToCart(item)
+        }
+
+    }
+    private val adapter = MainFragmentAdapter(controller)
     private lateinit var promotionAdapter: PromotionAdapter
     private val categoryAdapter = CategoryAdapter()
 

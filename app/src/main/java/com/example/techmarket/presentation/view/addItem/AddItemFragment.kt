@@ -10,14 +10,15 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.techmarket.R
-import com.example.techmarket.data.Category
-import com.example.techmarket.data.Item
+import com.example.techmarket.data.entities.Category
+import com.example.techmarket.data.entities.Item
 import com.example.techmarket.databinding.AddItemFragmentBinding
 import com.example.techmarket.presentation.presenter.AddItemPresenter
 import com.example.techmarket.presentation.view.base.BaseFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 const val ADD_SCOPE = "ADD_SCOPE"
 
@@ -107,6 +108,7 @@ class AddItemFragment : BaseFragment(), AddItemView {
             }
         }
         val item = Item(
+            UUID.randomUUID().toString(),
             binding.editTextDescription.text.toString(),
             binding.editTextImageUrl.text.toString(),
             0.0,

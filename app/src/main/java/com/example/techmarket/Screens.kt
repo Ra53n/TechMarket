@@ -1,12 +1,14 @@
 package com.example.techmarket
 
 import com.example.techmarket.data.entities.Category
+import com.example.techmarket.data.entities.Item
 import com.example.techmarket.presentation.view.addItem.AddItemFragment
 import com.example.techmarket.presentation.view.authorization.ControllerHolder
 import com.example.techmarket.presentation.view.authorization.login.LoginFragment
 import com.example.techmarket.presentation.view.authorization.registration.RegistrationFragment
 import com.example.techmarket.presentation.view.cart.CartFragment
 import com.example.techmarket.presentation.view.catalog.CatalogFragment
+import com.example.techmarket.presentation.view.details.DetailsFragment
 import com.example.techmarket.presentation.view.filter.FilterFragment
 import com.example.techmarket.presentation.view.like.LikeFragment
 import com.example.techmarket.presentation.view.main.MainFragment
@@ -51,5 +53,9 @@ object Screens {
 
     fun like() = FragmentScreen{
         LikeFragment.newInstance()
+    }
+
+    fun details(item: Item) = FragmentScreen{
+        DetailsFragment.newInstance(item)
     }
 }

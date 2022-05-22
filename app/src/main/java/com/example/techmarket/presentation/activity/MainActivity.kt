@@ -83,6 +83,7 @@ class MainActivity : MvpAppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         bindBottomNavigationView()
+        router.newRootScreen(main())
     }
 
     private fun bindBottomNavigationView() {

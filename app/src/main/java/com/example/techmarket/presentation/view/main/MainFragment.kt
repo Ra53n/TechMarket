@@ -29,7 +29,7 @@ class MainFragment : BaseFragment(), MainView {
         }
 
         override fun onItemClick(item: Item) {
-            TODO("Not yet implemented")
+            presenter.onItemClick(item)
         }
 
         override fun addToCart(item: Item) {

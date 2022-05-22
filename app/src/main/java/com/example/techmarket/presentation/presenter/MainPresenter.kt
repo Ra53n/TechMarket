@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.example.techmarket.Screens.details
 import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.entities.Promotion
 import com.example.techmarket.data.repository.RepositoryImpl
@@ -58,5 +59,9 @@ class MainPresenter : MvpPresenter<MainView>() {
         Thread {
             localRepository.addItemToCart(item)
         }.start()
+    }
+
+    fun onItemClick(item: Item) {
+        router.navigateTo(details(item))
     }
 }

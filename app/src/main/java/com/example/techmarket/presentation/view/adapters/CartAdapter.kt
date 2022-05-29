@@ -63,7 +63,7 @@ class CartAdapter(private val controller: Controller) :
                 .setOnClickListener { controller.onChangesCountClick(item, true) }
 
             itemView.findViewById<Button>(R.id.cart_recycler_view_item_decrease_count)
-                .setOnClickListener { controller.onChangesCountClick(item,false)}
+                .setOnClickListener { controller.onChangesCountClick(item, false) }
 
         }
     }

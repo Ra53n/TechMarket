@@ -7,14 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.techmarket.databinding.LoginFragmentBinding
+import com.example.techmarket.presentation.presenter.CartPresenter
+import com.example.techmarket.presentation.presenter.LoginPresenter
 import com.example.techmarket.presentation.view.base.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
-class LoginFragment private constructor(private var controller: Controller) : BaseFragment() {
+class LoginFragment private constructor(private var controller: Controller) : BaseFragment(),
+    LoginView {
 
     private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
+    private lateinit var database: DatabaseReference
 
     private val mAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val handler = Handler(Looper.getMainLooper())
@@ -28,6 +36,9 @@ class LoginFragment private constructor(private var controller: Controller) : Ba
         fun newInstance(controller: Controller) = LoginFragment(controller)
     }
 
+    @InjectPresenter
+    lateinit var presenter: LoginPresenter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,6 +50,7 @@ class LoginFragment private constructor(private var controller: Controller) : Ba
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        database = Firebase.database.reference
         setProgressBar(binding.loginFragmentProgressBar)
         bindClickListeners()
     }
@@ -76,6 +88,7 @@ class LoginFragment private constructor(private var controller: Controller) : Ba
                 .addOnCompleteListener(requireActivity()) { task ->
                     if (task.isSuccessful) {
                         controller.onLoginClick()
+
                     } else {
                         Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show()
                     }

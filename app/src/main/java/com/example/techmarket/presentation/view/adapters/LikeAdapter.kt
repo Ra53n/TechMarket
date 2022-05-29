@@ -11,9 +11,10 @@ import coil.load
 import com.example.techmarket.R
 import com.example.techmarket.data.entities.Item
 
-class LikeAdapter(private val controller : Controller)  : RecyclerView.Adapter<LikeAdapter.LikeViewHolder>() {
+class LikeAdapter(private val controller: Controller) :
+    RecyclerView.Adapter<LikeAdapter.LikeViewHolder>() {
 
-    interface Controller{
+    interface Controller {
         fun onItemClick(item: Item)
         fun onDeleteClick(item: Item)
     }
@@ -46,7 +47,8 @@ class LikeAdapter(private val controller : Controller)  : RecyclerView.Adapter<L
                 .load(item.imageUrl)
             itemView.findViewById<TextView>(R.id.like_recycler_view_item_price).text =
                 item.price.toString()
-            itemView.findViewById<Button>(R.id.like_recycler_view_item_unlike).setOnClickListener { controller.onDeleteClick(item) }
+            itemView.findViewById<Button>(R.id.like_recycler_view_item_unlike)
+                .setOnClickListener { controller.onDeleteClick(item) }
         }
     }
 }

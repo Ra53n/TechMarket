@@ -1,7 +1,9 @@
 package com.example.techmarket.presentation.view.main
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -23,7 +25,7 @@ class MainFragment : BaseFragment(), MainView {
 
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
-    private val controller = object :MainFragmentAdapter.Controller{
+    private val controller = object : MainFragmentAdapter.Controller {
         override fun onLikeItem(item: Item) {
             presenter.likeItem(item)
         }

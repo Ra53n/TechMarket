@@ -2,8 +2,8 @@ package com.example.techmarket.presentation.presenter
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.techmarket.data.entities.Category
 import com.example.techmarket.data.categoryRepository.CategoryRepositoryImpl
+import com.example.techmarket.data.entities.Category
 import com.example.techmarket.presentation.view.addItem.AddItemView
 import com.google.firebase.database.ktx.getValue
 

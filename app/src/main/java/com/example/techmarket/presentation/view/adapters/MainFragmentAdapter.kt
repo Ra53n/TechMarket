@@ -49,8 +49,16 @@ class MainFragmentAdapter(private val controller: Controller) :
                     item.description
                 findViewById<TextView>(R.id.main_recycler_view_item_price).text =
                     (item.price.toString() + " ₽")
-                findViewById<ImageView>(R.id.main_recycler_view_item_like).setOnClickListener { controller.onLikeItem(item) }
-                findViewById<Button>(R.id.main_recycler_view_item_add_to_cart).setOnClickListener { controller.addToCart(item) }
+                findViewById<ImageView>(R.id.main_recycler_view_item_like).setOnClickListener {
+                    controller.onLikeItem(
+                        item
+                    )
+                }
+                findViewById<Button>(R.id.main_recycler_view_item_add_to_cart).setOnClickListener {
+                    controller.addToCart(
+                        item
+                    )
+                }
                 setOnClickListener { controller.onItemClick(item) }
             }
         }

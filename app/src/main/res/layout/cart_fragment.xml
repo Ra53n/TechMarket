@@ -10,14 +10,14 @@
         android:id="@+id/cart_fragment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30"/>
+        android:layout_weight="30" />
 
     <TextView
         android:id="@+id/cart_fragment_no_items_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_gravity="center"
+        android:gravity="center"
         android:text="Ваша корзина пуста"
         android:textSize="32dp"
         android:visibility="gone"
@@ -52,10 +52,10 @@
         android:id="@+id/cart_fragment_make_an_order"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="3"
         android:layout_gravity="center"
-        android:text="Оформить заказ"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"/>
+        android:layout_marginBottom="64dp"
+        android:layout_weight="3"
+        android:text="Оформить заказ" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

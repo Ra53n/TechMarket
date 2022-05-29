@@ -18,16 +18,27 @@ class FilterFragment(private val category: Category) : BaseFragment(), FilterVie
     private val binding get() = _binding!!
 
     private lateinit var adapter: FilterAdapter
-    private val controller = object : FilterAdapter.Controller{
+    private val controller = object : FilterAdapter.Controller {
         override fun likeItem(item: Item) {
             presenter.likeItem(item)
+        }
+
+        override fun deleteItemFromCompare(item: Item) {
+            presenter.deleteFromCompare(item)
+        }
+
+        override fun addItemToCompare(item: Item) {
+            presenter.addToCompare(item)
+        }
+
+        override fun isItemContainsCompare(item: Item) : Boolean{
+            return presenter.isItemContainsCompare(item)
         }
 
     }
 
     @InjectPresenter
     lateinit var presenter: FilterPresenter
-
 
 
     companion object {

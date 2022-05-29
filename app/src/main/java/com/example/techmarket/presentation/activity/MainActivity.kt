@@ -2,7 +2,6 @@ package com.example.techmarket.presentation.activity
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.example.techmarket.APP_SCOPE
@@ -58,7 +57,7 @@ class MainActivity : MvpAppCompatActivity() {
                     return@OnItemSelectedListener true
                 }
 
-                R.id.navigation_catalog ->{
+                R.id.navigation_catalog -> {
                     router.replaceScreen(catalog())
                     return@OnItemSelectedListener true
                 }
@@ -67,12 +66,12 @@ class MainActivity : MvpAppCompatActivity() {
         }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu,menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.menu_add -> router.replaceScreen(add())
         }
         return true

@@ -7,6 +7,6 @@ import com.example.techmarket.data.StringMapConverter
 
 @Database(entities = [LikedItemEntity::class], version = 1, exportSchema = false)
 @TypeConverters(StringMapConverter::class)
-abstract class LikedItemsDatabase: RoomDatabase() {
+abstract class LikedItemsDatabase : RoomDatabase() {
     abstract fun likedItemsDao(): LikedItemsDao
 }

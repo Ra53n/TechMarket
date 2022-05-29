@@ -55,6 +55,14 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
         super.onViewCreated(view, savedInstanceState)
         bindItem()
         bindButton()
+        presenter.setCheckCompare(item)
+        binding.detailsFragmentCompare.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                presenter.addToCompare(item)
+            } else {
+                presenter.deleteFromCompare(item)
+            }
+        }
     }
 
     private fun bindItem() {
@@ -64,7 +72,7 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
         binding.detailsFragmentRating.text = item.rating.toString()
         val characteristic = item.characteristic.entries
         for (c in characteristic) {
-            val linearLayout =
+            val tableRow =
                 TableRow(context).apply {
                     this.layoutParams = TableRow.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -84,9 +92,9 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
                 this.textSize = 18f
             }
             val divider = MaterialDivider(requireContext())
-            linearLayout.addView(characteristicTextView)
-            linearLayout.addView(valueTextView)
-            binding.detailsFragmentCharacteristicContainer.addView(linearLayout)
+            tableRow.addView(characteristicTextView)
+            tableRow.addView(valueTextView)
+            binding.detailsFragmentCharacteristicContainer.addView(tableRow)
             binding.detailsFragmentCharacteristicContainer.addView(divider)
         }
     }
@@ -94,6 +102,10 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
     private fun bindButton() {
         binding.detailsFragmentLike.setOnClickListener { presenter.likeItem(item) }
         binding.detailsFragmentBuy.setOnClickListener { presenter.addToCart(item) }
+    }
+
+    override fun setContainsCompares(contains : Boolean) {
+        binding.detailsFragmentCompare.isChecked = contains
     }
 
 }

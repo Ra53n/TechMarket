@@ -1,6 +1,7 @@
 package com.example.techmarket.data.mappers
 
 import com.example.techmarket.data.cartDb.CartItemEntity
+import com.example.techmarket.data.compareDb.CompareItemEntity
 import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.likesDb.LikedItemEntity
 import javax.inject.Inject
@@ -62,8 +63,40 @@ class EntityItemsMapper @Inject constructor() {
                 price,
                 category,
                 brand,
-                count = count
+                characteristic,
+                count
             )
         }
     }
+
+    fun convertCompareItemToItem(compareItemEntity: CompareItemEntity): Item {
+        return with(compareItemEntity) {
+            Item(
+                id,
+                description,
+                imageUrl,
+                rating,
+                price,
+                category,
+                brand,
+                characteristic
+            )
+        }
+    }
+
+    fun convertItemToCompareItem(item: Item): CompareItemEntity {
+        return with(item) {
+            CompareItemEntity(
+                id,
+                description,
+                imageUrl,
+                rating,
+                price,
+                category,
+                brand,
+                characteristic
+            )
+        }
+    }
+
 }

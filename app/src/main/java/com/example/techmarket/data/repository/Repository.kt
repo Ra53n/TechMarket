@@ -8,4 +8,5 @@ interface Repository {
     fun getMenuItems(): Task<DataSnapshot>
     fun getPromotions(): Task<DataSnapshot>
     fun getCategories(): List<Category>
+    fun getUsers(): Task<DataSnapshot>
 }

@@ -9,7 +9,6 @@ import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.presentation.utils.GmailSender
 import com.example.techmarket.presentation.view.cart.CartView
-import java.util.*
 import javax.inject.Inject
 
 
@@ -56,7 +55,8 @@ class CartPresenter : MvpPresenter<CartView>() {
         //subject, body, sender, to
         Thread {
             val order = mutableListOf<String>()
-            order.addAll(localRepository.getAllCartItems().map { "${it.description} - ${it.count}" })
+            order.addAll(
+                localRepository.getAllCartItems().map { "${it.description} - ${it.count}" })
             sender.sendMail(
                 "Заказ",
                 order.toString(),

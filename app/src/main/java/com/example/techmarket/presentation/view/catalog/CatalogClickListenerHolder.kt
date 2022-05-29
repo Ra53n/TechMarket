@@ -28,7 +28,7 @@ class CatalogClickListenerHolder(private val context: Context) {
             popupMenu.menu.add(category)
         }
         popupMenu.setOnMenuItemClickListener { item ->
-            when(item.title.toString()){
+            when (item.title.toString()) {
                 Category.Smartphones.category -> {
                     router.navigateTo(filter(Category.Smartphones))
                 }
@@ -53,7 +53,7 @@ class CatalogClickListenerHolder(private val context: Context) {
             popupMenu.menu.add(category)
         }
         popupMenu.setOnMenuItemClickListener { item ->
-            when(item.title.toString()){
+            when (item.title.toString()) {
                 Category.Computers.category -> {
                     router.navigateTo(filter(Category.Computers))
                 }
@@ -78,7 +78,7 @@ class CatalogClickListenerHolder(private val context: Context) {
             popupMenu.menu.add(category)
         }
         popupMenu.setOnMenuItemClickListener { item ->
-            when(item.title.toString()){
+            when (item.title.toString()) {
                 Category.WashingMachines.category -> {
                     router.navigateTo(filter(Category.WashingMachines))
                 }
@@ -103,7 +103,7 @@ class CatalogClickListenerHolder(private val context: Context) {
             popupMenu.menu.add(category)
         }
         popupMenu.setOnMenuItemClickListener { item ->
-            when(item.title.toString()){
+            when (item.title.toString()) {
                 Category.Printers.category -> {
                     router.navigateTo(filter(Category.Printers))
                 }

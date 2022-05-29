@@ -9,11 +9,19 @@ interface LocalRepository {
 
     fun deleteLikedItems(item: Item)
 
-    fun getAllCartItems() : List<Item>
+    fun getAllCartItems(): List<Item>
 
     fun updateCartItem(item: Item)
 
     fun addItemToCart(item: Item)
 
     fun deleteItemFromCart(item: Item)
+
+    fun getAllCompareItems(): List<Item>
+
+    fun addItemToCompare(item: Item)
+
+    fun deleteCompareItem(item: Item)
+
+    fun isItemContainsCompares(item: Item) : Boolean
 }

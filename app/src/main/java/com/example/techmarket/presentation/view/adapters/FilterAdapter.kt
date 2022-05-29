@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,9 @@ class FilterAdapter(private val controller: Controller) :
 
     interface Controller {
         fun likeItem(item: Item)
+        fun deleteItemFromCompare(item: Item)
+        fun addItemToCompare(item: Item)
+        fun isItemContainsCompare(item: Item): Boolean
     }
 
     private var data: List<Item> = listOf()
@@ -48,6 +52,17 @@ class FilterAdapter(private val controller: Controller) :
                 item.price.toString()
             itemView.findViewById<Button>(R.id.catalog_recycler_view_item_like)
                 .setOnClickListener { controller.likeItem(item) }
+            with(itemView.findViewById<CheckBox>(R.id.catalog_recycler_view_item_compare)) {
+                isChecked = controller.isItemContainsCompare(item)
+                setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        controller.addItemToCompare(item)
+                    } else {
+                        controller.deleteItemFromCompare(item)
+                    }
+                }
+            }
+
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.techmarket.data.repository.localRepository
 
 import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.data.cartDb.CartItemsDatabase
+import com.example.techmarket.data.compareDb.CompareItemsDatabase
 import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.likesDb.LikedItemsDatabase
 import com.example.techmarket.data.mappers.EntityItemsMapper
@@ -11,6 +12,7 @@ import javax.inject.Inject
 class LocalRepositoryImpl @Inject constructor(
     val databaseLike: LikedItemsDatabase,
     val databaseCart: CartItemsDatabase,
+    val databaseCompare: CompareItemsDatabase,
     val mapper: EntityItemsMapper
 ) : LocalRepository {
 
@@ -46,5 +48,22 @@ class LocalRepositoryImpl @Inject constructor(
 
     override fun deleteItemFromCart(item: Item) {
         databaseCart.cartItemsDao().delete(mapper.convertItemToCartItem(item))
+    }
+
+    override fun getAllCompareItems(): List<Item> {
+        return databaseCompare.compareItemsDao().getAllCompareItems()
+            .map { mapper.convertCompareItemToItem(it) }
+    }
+
+    override fun addItemToCompare(item: Item) {
+        databaseCompare.compareItemsDao().insert(mapper.convertItemToCompareItem(item))
+    }
+
+    override fun deleteCompareItem(item: Item) {
+        databaseCompare.compareItemsDao().delete(mapper.convertItemToCompareItem(item))
+    }
+
+    override fun isItemContainsCompares(item: Item): Boolean {
+        return getAllCompareItems().contains(item)
     }
 }

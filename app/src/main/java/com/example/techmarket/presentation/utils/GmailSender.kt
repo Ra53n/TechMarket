@@ -85,7 +85,7 @@ class GmailSender() : javax.mail.Authenticator() {
             this.type = type
         }
 
-        private val name : String = "ByteArrayDataSource"
+        private val name: String = "ByteArrayDataSource"
 
         override fun getInputStream(): InputStream {
             return ByteArrayInputStream(data)

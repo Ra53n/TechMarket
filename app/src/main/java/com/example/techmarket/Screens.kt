@@ -8,6 +8,7 @@ import com.example.techmarket.presentation.view.authorization.login.LoginFragmen
 import com.example.techmarket.presentation.view.authorization.registration.RegistrationFragment
 import com.example.techmarket.presentation.view.cart.CartFragment
 import com.example.techmarket.presentation.view.catalog.CatalogFragment
+import com.example.techmarket.presentation.view.compare.CompareFragment
 import com.example.techmarket.presentation.view.details.DetailsFragment
 import com.example.techmarket.presentation.view.filter.FilterFragment
 import com.example.techmarket.presentation.view.like.LikeFragment
@@ -51,11 +52,15 @@ object Screens {
         FilterFragment.newInstance(category)
     }
 
-    fun like() = FragmentScreen{
+    fun like() = FragmentScreen {
         LikeFragment.newInstance()
     }
 
-    fun details(item: Item) = FragmentScreen{
+    fun details(item: Item) = FragmentScreen {
         DetailsFragment.newInstance(item)
+    }
+
+    fun compare() = FragmentScreen{
+        CompareFragment.newInstance()
     }
 }

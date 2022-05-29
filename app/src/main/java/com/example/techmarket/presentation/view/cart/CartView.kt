@@ -9,6 +9,6 @@ import com.example.techmarket.data.entities.Item
 @StateStrategyType(AddToEndStrategy::class)
 interface CartView : MvpView {
     fun setData(list: List<Item>)
-    fun setTotalCost(cost:Int)
+    fun setTotalCost(cost: Int)
     fun sendOrder(intent: Intent)
 }

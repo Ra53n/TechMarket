@@ -4,9 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.databinding.ProfileFragmentBinding
+import com.example.techmarket.presentation.presenter.ProfilePresenter
 import com.example.techmarket.presentation.view.authorization.ControllerHolder
 import com.example.techmarket.presentation.view.base.BaseFragment
+import toothpick.Toothpick
+
+const val PROFILE_SCOPE = "PROFILE_SCOPE"
 
 class ProfileFragment : BaseFragment(), ProfileView {
     private var _binding: ProfileFragmentBinding? = null
@@ -15,6 +22,16 @@ class ProfileFragment : BaseFragment(), ProfileView {
     companion object {
         fun newInstance() = ProfileFragment()
     }
+
+    @InjectPresenter
+    lateinit var presenter: ProfilePresenter
+
+    @ProvidePresenter
+    fun provideProfilePresenter(): ProfilePresenter =
+        Toothpick.openScopes(APP_SCOPE, PROFILE_SCOPE)
+            .getInstance(ProfilePresenter::class.java)
+            .also { Toothpick.closeScope(PROFILE_SCOPE) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,5 +53,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
         binding.profileFragmentBtAuthorisation.setOnClickListener {
             ControllerHolder().switchToLogClick()
         }
+        binding.profileFragmentBtCompare.setOnClickListener { presenter.onCompareClick() }
     }
+
 }

@@ -15,5 +15,5 @@ data class CartItemEntity(
     val category: Category = Category.Uncategory,
     val brand: String = "",
     val characteristic: Map<String, String> = emptyMap<String, String>(),
-    var count : Int = 1
+    var count: Int = 1
 )

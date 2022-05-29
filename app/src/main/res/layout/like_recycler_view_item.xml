@@ -38,9 +38,9 @@
                 android:id="@+id/like_recycler_view_item_unlike"
                 style="@style/action_button"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="48dp"
                 android:layout_gravity="top"
+                android:layout_weight="1"
                 android:background="@color/white"
                 android:drawableTop="@drawable/ic_baseline_close_24"
                 android:padding="12dp"
@@ -96,7 +96,6 @@
                 app:layout_constraintEnd_toStartOf="@id/like_recycler_view_item_buy"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
 
             <androidx.appcompat.widget.AppCompatButton

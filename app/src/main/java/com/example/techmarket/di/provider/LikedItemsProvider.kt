@@ -1,4 +1,4 @@
-package com.example.techmarket.di
+package com.example.techmarket.di.provider
 
 import android.content.Context
 import androidx.room.Room

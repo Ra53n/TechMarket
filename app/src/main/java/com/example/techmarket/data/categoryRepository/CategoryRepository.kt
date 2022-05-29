@@ -5,5 +5,5 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 
 interface CategoryRepository {
-    fun getFields(category: Category) : Task<DataSnapshot>
+    fun getFields(category: Category): Task<DataSnapshot>
 }

@@ -21,7 +21,7 @@ class ComparePresenter : MvpPresenter<CompareView>() {
         }.start()
     }
 
-    fun deleteItem(item: Item){
+    fun deleteItem(item: Item) {
         Thread {
             localRepository.deleteCompareItem(item)
         }.start()
@@ -34,7 +34,7 @@ class ComparePresenter : MvpPresenter<CompareView>() {
         }.start()
     }
 
-    fun deleteFromCompare(item: Item){
+    fun deleteFromCompare(item: Item) {
         Thread {
             localRepository.deleteCompareItem(item)
         }.start()

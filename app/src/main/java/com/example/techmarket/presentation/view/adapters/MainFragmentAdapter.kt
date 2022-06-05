@@ -18,6 +18,7 @@ class MainFragmentAdapter(private val controller: Controller) :
         fun onLikeItem(item: Item)
         fun onItemClick(item: Item)
         fun addToCart(item: Item)
+        fun isItemLiked(item: Item): Boolean
     }
 
     private var data: List<Item> = listOf()
@@ -49,10 +50,14 @@ class MainFragmentAdapter(private val controller: Controller) :
                     item.description
                 findViewById<TextView>(R.id.main_recycler_view_item_price).text =
                     (item.price.toString() + " ₽")
-                findViewById<ImageView>(R.id.main_recycler_view_item_like).setOnClickListener {
-                    controller.onLikeItem(
-                        item
-                    )
+                with(findViewById<ImageView>(R.id.main_recycler_view_item_like)) {
+                    setOnClickListener {
+                        controller.onLikeItem(item)
+                        changeItemToLiked(itemView)
+                    }
+                    if (controller.isItemLiked(item)) {
+                        changeItemToLiked(itemView)
+                    }
                 }
                 findViewById<Button>(R.id.main_recycler_view_item_add_to_cart).setOnClickListener {
                     controller.addToCart(
@@ -61,6 +66,15 @@ class MainFragmentAdapter(private val controller: Controller) :
                 }
                 setOnClickListener { controller.onItemClick(item) }
             }
+        }
+    }
+
+    private fun changeItemToLiked(view: View) {
+        with(view.findViewById<ImageView>(R.id.main_recycler_view_item_like)) {
+            setImageDrawable(
+                resources.getDrawable(R.drawable.ic_baseline_favorite_24)
+            )
+            setColorFilter(resources.getColor(R.color.pink_light))
         }
     }
 }

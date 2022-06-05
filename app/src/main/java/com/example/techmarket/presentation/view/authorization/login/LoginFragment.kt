@@ -1,43 +1,39 @@
 package com.example.techmarket.presentation.view.authorization.login
 
+import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.databinding.LoginFragmentBinding
-import com.example.techmarket.presentation.presenter.CartPresenter
 import com.example.techmarket.presentation.presenter.LoginPresenter
 import com.example.techmarket.presentation.view.base.BaseFragment
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import toothpick.Toothpick
 
-class LoginFragment private constructor(private var controller: Controller) : BaseFragment(),
+const val LOGIN_SCOPE = "LOGIN_SCOPE"
+
+class LoginFragment : BaseFragment(),
     LoginView {
 
     private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var database: DatabaseReference
-
-    private val mAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
-    private val handler = Handler(Looper.getMainLooper())
-
-    interface Controller {
-        fun switchToRegClick()
-        fun onLoginClick()
-    }
 
     companion object {
-        fun newInstance(controller: Controller) = LoginFragment(controller)
+        fun newInstance() = LoginFragment()
     }
 
     @InjectPresenter
     lateinit var presenter: LoginPresenter
+
+    @ProvidePresenter
+    fun provideLoginPresenter(): LoginPresenter =
+        Toothpick.openScopes(APP_SCOPE, LOGIN_SCOPE)
+            .getInstance(LoginPresenter::class.java)
+            .also { Toothpick.closeScope(LOGIN_SCOPE) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,53 +44,30 @@ class LoginFragment private constructor(private var controller: Controller) : Ba
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        database = Firebase.database.reference
         setProgressBar(binding.loginFragmentProgressBar)
         bindClickListeners()
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun bindClickListeners() {
-        Thread {
-            with(binding) {
-                loginFragmentBtLogin.setOnClickListener {
-                    val email = loginFragmentEtEmail.text.toString()
-                    val password = loginFragmentEtPassword.text.toString()
-                    signIn(email, password)
-                }
-                loginFragmentTvRegister.setOnClickListener {
-                    requireActivity().runOnUiThread {
-                        showProgressBar()
-                        handler.postDelayed({
-                            controller.switchToRegClick()
-                            hideProgressBar()
-                        }, 1000)
-                    }
-                }
+        with(binding) {
+            loginFragmentBtLogin.setOnClickListener {
+                val email = loginFragmentEtEmail.text.toString()
+                val password = loginFragmentEtPassword.text.toString()
+                presenter.signIn(email, password)
             }
-        }.start()
+            loginFragmentTvRegister.setOnClickListener {
+                presenter.onRegClick()
+            }
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    private fun signIn(email: String, password: String) {
-        requireActivity().runOnUiThread {
-            showProgressBar()
-            mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        controller.onLoginClick()
-
-                    } else {
-                        Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show()
-                    }
-                    hideProgressBar()
-                }
-        }
     }
 
 }

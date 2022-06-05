@@ -89,6 +89,28 @@
                 android:textSize="28dp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="8dp">
+
+            <TextView
+                android:id="@+id/cart_recycler_view_item_seller"
+                style="@style/catalog_textview"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:text="Выберете продавца" />
+
+            <Button
+                android:id="@+id/cart_recycler_view_item_seller_button"
+                style="@style/catalog_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cart_recycler_view_item_buy"
@@ -96,6 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="@color/pink_light"
             android:padding="16dp"
             android:text="Подробнее"

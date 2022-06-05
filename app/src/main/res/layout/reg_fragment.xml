@@ -36,12 +36,31 @@
         app:layout_constraintTop_toBottomOf="@+id/reg_fragment__iv_logo" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/reg_fragment__et_name"
+        style="@style/name_edit_text"
+        app:layout_constraintBottom_toTopOf="@+id/reg_fragment__et_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_fragment__et_email" />
+
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/reg_fragment__et_password"
         style="@style/password_edit_text"
         app:layout_constraintBottom_toTopOf="@+id/reg_fragment__bt_registration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reg_fragment__et_email" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/reg_fragment__cb_is_seller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Seller"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reg_fragment__et_password" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/reg_fragment__bt_registration"

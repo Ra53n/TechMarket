@@ -1,12 +1,9 @@
 package com.example.techmarket.presentation.activity
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.R
-import com.example.techmarket.Screens.add
 import com.example.techmarket.Screens.cart
 import com.example.techmarket.Screens.catalog
 import com.example.techmarket.Screens.like
@@ -64,18 +61,6 @@ class MainActivity : MvpAppCompatActivity() {
             }
             false
         }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_add -> router.replaceScreen(add())
-        }
-        return true
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

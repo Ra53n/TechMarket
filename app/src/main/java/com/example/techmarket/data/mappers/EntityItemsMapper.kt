@@ -48,7 +48,8 @@ class EntityItemsMapper @Inject constructor() {
                 category,
                 brand,
                 characteristic,
-                count
+                count,
+                sellers
             )
         }
     }
@@ -64,7 +65,8 @@ class EntityItemsMapper @Inject constructor() {
                 category,
                 brand,
                 characteristic,
-                count
+                count,
+                sellers
             )
         }
     }

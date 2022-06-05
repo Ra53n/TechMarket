@@ -21,6 +21,13 @@
         <item name="android:inputType">textPassword</item>
     </style>
 
+    <style name="name_edit_text">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:hint">Name</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
     <style name="action_button">
         <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">60dp</item>

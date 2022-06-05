@@ -17,6 +17,15 @@ import javax.inject.Inject
 @InjectViewState
 class MainPresenter : MvpPresenter<MainView>() {
 
+    private lateinit var likeItems: List<Item>
+
+    init {
+        Thread {
+            Thread.sleep(100)
+            likeItems = localRepository.getAllLikedItems()
+        }.start()
+    }
+
     @Inject
     lateinit var repository: RepositoryImpl
 
@@ -57,11 +66,15 @@ class MainPresenter : MvpPresenter<MainView>() {
 
     fun addToCart(item: Item) {
         Thread {
-            localRepository.addItemToCart(item)
+            localRepository.addItemToCart(item, null, null)
         }.start()
     }
 
     fun onItemClick(item: Item) {
         router.navigateTo(details(item))
+    }
+
+    fun isItemLiked(item: Item): Boolean {
+        return likeItems.map { it.id }.contains(item.id)
     }
 }

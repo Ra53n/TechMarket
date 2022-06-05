@@ -38,6 +38,10 @@ class MainFragment : BaseFragment(), MainView {
             presenter.addToCart(item)
         }
 
+        override fun isItemLiked(item: Item): Boolean {
+            return presenter.isItemLiked(item)
+        }
+
     }
     private val adapter = MainFragmentAdapter(controller)
     private lateinit var promotionAdapter: PromotionAdapter

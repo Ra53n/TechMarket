@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.techmarket.APP_SCOPE
+import com.example.techmarket.data.cartDb.CartItemEntity
 import com.example.techmarket.data.entities.Item
+import com.example.techmarket.data.entities.User
 import com.example.techmarket.databinding.CartFragmentBinding
 import com.example.techmarket.presentation.presenter.CartPresenter
 import com.example.techmarket.presentation.view.adapters.CartAdapter
@@ -34,6 +36,10 @@ class CartFragment : BaseFragment(), CartView {
 
         override fun onChangesCountClick(item: Item, increase: Boolean) {
             presenter.changeItemCount(item, increase)
+        }
+
+        override fun onSellerChangesClick(item: Item,seller: User, price: String) {
+            presenter.changeSeller(item,seller,price)
         }
     }
 
@@ -73,7 +79,7 @@ class CartFragment : BaseFragment(), CartView {
         binding.cartFragmentMakeAnOrder.setOnClickListener { presenter.sendOrder() }
     }
 
-    override fun setData(list: List<Item>) {
+    override fun setData(list: List<CartItemEntity>) {
         adapter.setItems(list)
     }
 

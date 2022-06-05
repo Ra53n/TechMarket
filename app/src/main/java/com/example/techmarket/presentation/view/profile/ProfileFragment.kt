@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.techmarket.APP_SCOPE
+import com.example.techmarket.App
+import com.example.techmarket.R
 import com.example.techmarket.databinding.ProfileFragmentBinding
 import com.example.techmarket.presentation.presenter.ProfilePresenter
-import com.example.techmarket.presentation.view.authorization.ControllerHolder
 import com.example.techmarket.presentation.view.base.BaseFragment
 import toothpick.Toothpick
 
@@ -51,9 +52,21 @@ class ProfileFragment : BaseFragment(), ProfileView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.profileFragmentBtAuthorisation.setOnClickListener {
-            ControllerHolder().switchToLogClick()
+            presenter.onLoginClick()
         }
         binding.profileFragmentBtCompare.setOnClickListener { presenter.onCompareClick() }
+        App.Companion.currentUser?.let {
+            with(binding) {
+                profileFragmentTvUsername.text =
+                    resources.getString(R.string.hello_profile, it.name)
+                profileFragmentBtAuthorisation.visibility = View.INVISIBLE
+                profileFragmentBtExitProfile.visibility = View.VISIBLE
+                profileFragmentBtProfileSettings.visibility = View.VISIBLE
+                if (it.seller) profileFragmentBtAddItem.visibility = View.VISIBLE
+            }
+        }
+        binding.profileFragmentBtExitProfile.setOnClickListener { presenter.exitProfile() }
+        binding.profileFragmentBtAddItem.setOnClickListener { presenter.addItem() }
+        binding.profileFragmentBtProfileSettings.setOnClickListener { presenter.editProfile() }
     }
-
 }

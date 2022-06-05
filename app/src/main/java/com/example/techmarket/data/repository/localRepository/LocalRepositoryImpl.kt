@@ -1,9 +1,11 @@
 package com.example.techmarket.data.repository.localRepository
 
 import com.example.techmarket.APP_SCOPE
+import com.example.techmarket.data.cartDb.CartItemEntity
 import com.example.techmarket.data.cartDb.CartItemsDatabase
 import com.example.techmarket.data.compareDb.CompareItemsDatabase
 import com.example.techmarket.data.entities.Item
+import com.example.techmarket.data.entities.User
 import com.example.techmarket.data.likesDb.LikedItemsDatabase
 import com.example.techmarket.data.mappers.EntityItemsMapper
 import toothpick.Toothpick
@@ -33,17 +35,24 @@ class LocalRepositoryImpl @Inject constructor(
         databaseLike.likedItemsDao().delete(mapper.convertItemToLikedItem(item))
     }
 
-    override fun getAllCartItems(): List<Item> {
+    override fun getAllCartItems(): List<CartItemEntity> {
         return databaseCart.cartItemsDao().getAllItemsAddedToCart()
-            .map { mapper.convertCartItemToItem(it) }
     }
 
-    override fun updateCartItem(item: Item) {
-        databaseCart.cartItemsDao().update(mapper.convertItemToCartItem(item))
+    override fun updateCartItem(item: Item, user: User?, price: String?) {
+        databaseCart.cartItemsDao()
+            .update(mapper.convertItemToCartItem(item).apply {
+                selectedSeller = user
+                price?.let { this.price = it.toInt() }
+            })
     }
 
-    override fun addItemToCart(item: Item) {
-        databaseCart.cartItemsDao().insert(mapper.convertItemToCartItem(item))
+    override fun addItemToCart(item: Item, user: User?, price: String?) {
+        databaseCart.cartItemsDao()
+            .insert(mapper.convertItemToCartItem(item).apply {
+                selectedSeller = user
+                price?.let { this.price = price.toInt() }
+            })
     }
 
     override fun deleteItemFromCart(item: Item) {

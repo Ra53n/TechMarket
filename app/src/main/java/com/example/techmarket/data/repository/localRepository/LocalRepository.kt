@@ -1,6 +1,8 @@
 package com.example.techmarket.data.repository.localRepository
 
+import com.example.techmarket.data.cartDb.CartItemEntity
 import com.example.techmarket.data.entities.Item
+import com.example.techmarket.data.entities.User
 
 interface LocalRepository {
     fun getAllLikedItems(): List<Item>
@@ -9,11 +11,11 @@ interface LocalRepository {
 
     fun deleteLikedItems(item: Item)
 
-    fun getAllCartItems(): List<Item>
+    fun getAllCartItems(): List<CartItemEntity>
 
-    fun updateCartItem(item: Item)
+    fun updateCartItem(item: Item, user: User?, price : String?)
 
-    fun addItemToCart(item: Item)
+    fun addItemToCart(item: Item, user: User?,price: String?)
 
     fun deleteItemFromCart(item: Item)
 
@@ -23,5 +25,5 @@ interface LocalRepository {
 
     fun deleteCompareItem(item: Item)
 
-    fun isItemContainsCompares(item: Item) : Boolean
+    fun isItemContainsCompares(item: Item): Boolean
 }

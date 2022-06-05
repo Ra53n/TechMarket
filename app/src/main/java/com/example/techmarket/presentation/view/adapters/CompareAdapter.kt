@@ -47,7 +47,11 @@ class CompareAdapter(private val controller: Controller) :
                 findViewById<ImageView>(R.id.compare_recycler_view_item_image).load(item.imageUrl)
                 findViewById<TextView>(R.id.compare_recycler_view_item_price).text =
                     item.price.toString()
-                findViewById<AppCompatButton>(R.id.compare_recycler_view_item_remove).setOnClickListener { controller.onDeleteItemClick(item) }
+                findViewById<AppCompatButton>(R.id.compare_recycler_view_item_remove).setOnClickListener {
+                    controller.onDeleteItemClick(
+                        item
+                    )
+                }
             }
         }
     }

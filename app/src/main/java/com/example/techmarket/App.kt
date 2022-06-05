@@ -14,7 +14,7 @@ class App : Application() {
             .installModules(AppModule(this))
     }
 
-    companion object{
+    companion object {
         var currentUser: User? = null
     }
 }

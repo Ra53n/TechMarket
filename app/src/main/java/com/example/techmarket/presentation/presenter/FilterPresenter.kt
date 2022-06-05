@@ -1,7 +1,5 @@
 package com.example.techmarket.presentation.presenter
 
-import android.os.Handler
-import android.os.Looper
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.techmarket.APP_SCOPE
@@ -16,11 +14,11 @@ import javax.inject.Inject
 
 @InjectViewState
 class FilterPresenter : MvpPresenter<FilterView>() {
-    private lateinit var compareItems:List<Item>
+    private lateinit var compareItems: List<Item>
 
     init {
         Toothpick.inject(this, Toothpick.openScope(APP_SCOPE))
-        Thread{
+        Thread {
             compareItems = localRepository.getAllCompareItems()
         }.start()
     }
@@ -51,13 +49,13 @@ class FilterPresenter : MvpPresenter<FilterView>() {
         }.start()
     }
 
-    fun deleteFromCompare(item: Item){
+    fun deleteFromCompare(item: Item) {
         Thread {
             localRepository.deleteCompareItem(item)
         }.start()
     }
 
-    fun isItemContainsCompare(item: Item):Boolean{
+    fun isItemContainsCompare(item: Item): Boolean {
         return compareItems.contains(item)
     }
 }

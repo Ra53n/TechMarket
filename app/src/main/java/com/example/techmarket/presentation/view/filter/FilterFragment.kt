@@ -31,7 +31,7 @@ class FilterFragment(private val category: Category) : BaseFragment(), FilterVie
             presenter.addToCompare(item)
         }
 
-        override fun isItemContainsCompare(item: Item) : Boolean{
+        override fun isItemContainsCompare(item: Item): Boolean {
             return presenter.isItemContainsCompare(item)
         }
 

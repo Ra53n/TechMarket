@@ -47,7 +47,8 @@
             android:id="@+id/button_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add" />
+            android:text="Add"
+            android:layout_marginBottom="32dp"/>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

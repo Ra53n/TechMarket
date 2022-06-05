@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Tech Market</string>
     <string name="registration_button">Register</string>
-    <string name="login_button">Login</string>
+    <string name="login_button">Войти</string>
     <string name="registration_text_view">Registration</string>
     <string name="login_text_view">Already has an account?</string>
     <string name="navigation_menu_item_home">Главная</string>
@@ -23,4 +23,6 @@
 
     <string name="office_equipment">Office equipment</string>
     <string name="printers">Printers</string>
+
+    <string name="hello_profile">Привет, %s!</string>
 </resources>

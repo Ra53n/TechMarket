@@ -6,6 +6,8 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.techmarket.BuildConfig
 import com.example.techmarket.data.entities.Item
+import com.example.techmarket.data.entities.User
+import com.example.techmarket.data.mappers.EntityItemsMapper
 import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.presentation.utils.GmailSender
 import com.example.techmarket.presentation.view.cart.CartView
@@ -16,6 +18,9 @@ import javax.inject.Inject
 class CartPresenter : MvpPresenter<CartView>() {
     @Inject
     lateinit var localRepository: LocalRepositoryImpl
+
+    @Inject
+    lateinit var mapper : EntityItemsMapper
 
     fun loadItems() {
         Thread {
@@ -41,9 +46,9 @@ class CartPresenter : MvpPresenter<CartView>() {
     fun changeItemCount(item: Item, increase: Boolean) {
         Thread {
             if (increase) {
-                localRepository.updateCartItem(item.apply { this.count = ++this.count })
+                localRepository.updateCartItem(item.apply { this.count = ++this.count }, null, null)
             } else if (item.count > 1) {
-                localRepository.updateCartItem(item.apply { this.count = --this.count })
+                localRepository.updateCartItem(item.apply { this.count = --this.count }, null, null)
             }
             loadItems()
         }.start()
@@ -51,8 +56,6 @@ class CartPresenter : MvpPresenter<CartView>() {
 
     fun sendOrder() {
         val sender = GmailSender("luckyfrost2301@gmail.com", BuildConfig.EMAIL_PASSWORD)
-        //subject, body, sender, to
-        //subject, body, sender, to
         Thread {
             val order = mutableListOf<String>()
             order.addAll(
@@ -63,6 +66,13 @@ class CartPresenter : MvpPresenter<CartView>() {
                 "luckyfrost2301@gmail.com",
                 "nikkon2001@mail.ru"
             )
+        }.start()
+    }
+
+    fun changeSeller(item: Item, seller: User, price: String) {
+        Thread {
+            localRepository.updateCartItem(item, seller, price)
+            loadItems()
         }.start()
     }
 }

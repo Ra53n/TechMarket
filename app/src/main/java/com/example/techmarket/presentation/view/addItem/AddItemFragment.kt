@@ -9,9 +9,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.example.techmarket.App
 import com.example.techmarket.R
 import com.example.techmarket.data.entities.Category
 import com.example.techmarket.data.entities.Item
+import com.example.techmarket.data.entities.UserPricePair
 import com.example.techmarket.databinding.AddItemFragmentBinding
 import com.example.techmarket.presentation.presenter.AddItemPresenter
 import com.example.techmarket.presentation.view.base.BaseFragment
@@ -52,7 +54,8 @@ class AddItemFragment : BaseFragment(), AddItemView {
         super.onViewCreated(view, savedInstanceState)
         database = Firebase.database.reference
         binding.buttonAdd.setOnClickListener {
-            database.child("items").push().setValue(getItemFromFields())
+            val item = getItemFromFields()
+            database.child("items").child(item.id).setValue(item)
 //            database.child("category").child(Category.Smartphones.toString())
 //                .setValue(
 //                    listOf(
@@ -107,16 +110,21 @@ class AddItemFragment : BaseFragment(), AddItemView {
                 map.put(this.hint.toString(), this.text.toString())
             }
         }
-        val item = Item(
+        return Item(
             UUID.randomUUID().toString(),
             binding.editTextDescription.text.toString(),
             binding.editTextImageUrl.text.toString(),
             0.0,
             binding.editTextImagePrice.text.toString().toInt(),
             category = binding.spinnerCategory.selectedItem as Category,
-            characteristic = map
+            characteristic = map,
+            sellers = mapOf(
+                App.currentUser!!.id to UserPricePair(
+                    App.currentUser!!,
+                    binding.editTextImagePrice.text.toString()
+                )
+            )
         )
-        return item
     }
 
     override fun addFieldsFromList(list: List<String>) {

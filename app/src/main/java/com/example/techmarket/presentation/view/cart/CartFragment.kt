@@ -90,4 +90,8 @@ class CartFragment : BaseFragment(), CartView {
     override fun sendOrder(intent: Intent) {
         startActivity(intent)
     }
+
+    override fun showNoCartItems() {
+        binding.cartFragmentNoItemsTextView.visibility = View.VISIBLE
+    }
 }

@@ -1,9 +1,12 @@
 package com.example.techmarket.presentation.view.details
 
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -81,6 +84,7 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindItem()
@@ -99,16 +103,21 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
         sellersAdapter.setItems(item.sellers)
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     private fun bindItem() {
         binding.detailsFragmentDescription.text = item.description
         binding.detailsFragmentImage.load(item.imageUrl)
         binding.detailsFragmentPrice.text = item.price.toString() + " ₽"
-        binding.detailsFragmentRating.text = item.rating.toString()
-        val characteristic = item.characteristic.entries
+        binding.detailsFragmentRatingStar.setOnClickListener { showRatingDialog() }
+        var rating = 0.0
+        if (item.rating.isNotEmpty()) rating = item.rating.values.average()
+        binding.detailsFragmentRating.text = rating.toString()
+        val characteristic = item.characteristic.entries.reversed()
+        val displayMetrics = requireContext().display
         for (c in characteristic) {
             val tableRow =
-                TableRow(context).apply {
-                    this.layoutParams = TableRow.LayoutParams(
+                LinearLayout(context).apply {
+                    this.layoutParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
@@ -117,11 +126,18 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
             val characteristicTextView = TextView(context).apply {
                 this.text = c.key
                 this.textSize = 18f
-                this.width = 480
+                this.layoutParams = LinearLayout.LayoutParams(
+                    displayMetrics!!.width / 2,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
             }
             val valueTextView = TextView(context).apply {
                 this.textAlignment = View.TEXT_ALIGNMENT_VIEW_END
-                this.width = 540
+                this.setPadding(0,0,32,0)
+                this.layoutParams = LinearLayout.LayoutParams(
+                    displayMetrics!!.width / 2,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
                 this.text = c.value
                 this.textSize = 18f
             }
@@ -154,6 +170,29 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
                 } else {
                     Toast.makeText(requireContext(), "Введите цену", Toast.LENGTH_SHORT)
                 }
+            }
+            .setNegativeButton("Нет") { dialog, id ->
+                dialog.cancel()
+            }
+        builder.create().show()
+    }
+
+    private fun showRatingDialog() {
+        if (App.currentUser == null) {
+            Toast.makeText(
+                context,
+                "Войдите чтобы оценивать товары!",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        val builder = AlertDialog.Builder(requireContext())
+        val ratingBar = RatingBar(requireContext()).apply { setPadding(8) }
+        ratingBar.rating
+        builder.setTitle("Вы действительно хотите продовать этот товар?")
+            .setView(ratingBar)
+            .setPositiveButton("Оценить") { dialog, id ->
+                presenter.rateItem(item, ratingBar.rating)
             }
             .setNegativeButton("Нет") { dialog, id ->
                 dialog.cancel()

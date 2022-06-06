@@ -20,7 +20,7 @@ class CartPresenter : MvpPresenter<CartView>() {
     lateinit var localRepository: LocalRepositoryImpl
 
     @Inject
-    lateinit var mapper : EntityItemsMapper
+    lateinit var mapper: EntityItemsMapper
 
     fun loadItems() {
         Thread {
@@ -30,8 +30,12 @@ class CartPresenter : MvpPresenter<CartView>() {
                 result += item.count * item.price
             }
             Handler(Looper.getMainLooper()).post {
-                viewState.setData(list)
-                viewState.setTotalCost(result)
+                if (list.isEmpty()) {
+                    viewState.showNoCartItems()
+                } else {
+                    viewState.setData(list)
+                    viewState.setTotalCost(result)
+                }
             }
         }.start()
     }

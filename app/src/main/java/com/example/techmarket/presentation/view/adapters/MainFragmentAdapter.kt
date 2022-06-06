@@ -43,8 +43,11 @@ class MainFragmentAdapter(private val controller: Controller) :
     inner class MainFragmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: Item) {
             with(itemView) {
-                findViewById<TextView>(R.id.main_recycler_view_item_rating).text =
-                    item.rating.toString()
+                var rating = 0f
+                if (item.rating.isNotEmpty()){
+                    rating = item.rating.values.average().toFloat()
+                }
+                findViewById<TextView>(R.id.main_recycler_view_item_rating).text = rating.toString()
                 findViewById<ImageView>(R.id.main_recycler_view_item_image).load(item.imageUrl)
                 findViewById<TextView>(R.id.main_recycler_view_item_description).text =
                     item.description

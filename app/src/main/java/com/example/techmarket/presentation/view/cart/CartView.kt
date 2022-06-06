@@ -12,4 +12,5 @@ interface CartView : MvpView {
     fun setData(list: List<CartItemEntity>)
     fun setTotalCost(cost: Int)
     fun sendOrder(intent: Intent)
+    fun showNoCartItems()
 }

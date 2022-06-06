@@ -45,6 +45,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/details_fragment_rating_star"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="4dp"

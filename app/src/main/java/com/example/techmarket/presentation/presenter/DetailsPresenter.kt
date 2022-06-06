@@ -28,6 +28,8 @@ class DetailsPresenter : MvpPresenter<DetailsView>() {
     @Inject
     lateinit var router: Router
 
+    private val database = Firebase.database.reference
+
     fun likeItem(item: Item) {
         Thread {
             localRepository.likeItem(item)
@@ -60,7 +62,6 @@ class DetailsPresenter : MvpPresenter<DetailsView>() {
     }
 
     fun addSellerToItem(item: Item, price: String) {
-        val database = Firebase.database.reference
         val newItem = item.apply {
             val map = sellers.toMutableMap()
             map.putIfAbsent(
@@ -73,5 +74,11 @@ class DetailsPresenter : MvpPresenter<DetailsView>() {
         }
         database.child("items").child(item.id).setValue(newItem)
         router.navigateTo(Screens.details(newItem))
+    }
+
+    fun rateItem(item: Item, rating: Float) {
+        item.rating.putIfAbsent(App.currentUser!!.id, rating)
+        database.child("items").child(item.id).setValue(item)
+        router.navigateTo(Screens.details(item))
     }
 }

@@ -114,7 +114,7 @@ class AddItemFragment : BaseFragment(), AddItemView {
             UUID.randomUUID().toString(),
             binding.editTextDescription.text.toString(),
             binding.editTextImageUrl.text.toString(),
-            0.0,
+            mutableMapOf(),
             binding.editTextImagePrice.text.toString().toInt(),
             category = binding.spinnerCategory.selectedItem as Category,
             characteristic = map,

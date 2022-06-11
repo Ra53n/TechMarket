@@ -44,7 +44,7 @@ class MainFragmentAdapter(private val controller: Controller) :
         fun bind(item: Item) {
             with(itemView) {
                 var rating = 0f
-                if (item.rating.isNotEmpty()){
+                if (item.rating.isNotEmpty()) {
                     rating = item.rating.values.average().toFloat()
                 }
                 findViewById<TextView>(R.id.main_recycler_view_item_rating).text = rating.toString()

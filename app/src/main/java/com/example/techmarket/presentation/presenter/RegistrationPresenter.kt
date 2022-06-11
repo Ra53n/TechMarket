@@ -45,7 +45,11 @@ class RegistrationPresenter : MvpPresenter<RegistrationView>() {
                     onRegistrationClick()
                     createUser(email, name, password, isSeller)
                 } else {
-                    Toast.makeText(context, context.resources.getString(R.string.user_already_exist), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        context.resources.getString(R.string.user_already_exist),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 viewState.hideProgressBar()
             }

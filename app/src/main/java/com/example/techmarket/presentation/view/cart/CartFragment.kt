@@ -39,8 +39,8 @@ class CartFragment : BaseFragment(), CartView {
             presenter.changeItemCount(item, increase)
         }
 
-        override fun onSellerChangesClick(item: Item,seller: User, price: String) {
-            presenter.changeSeller(item,seller,price)
+        override fun onSellerChangesClick(item: Item, seller: User, price: String) {
+            presenter.changeSeller(item, seller, price)
         }
     }
 
@@ -97,6 +97,10 @@ class CartFragment : BaseFragment(), CartView {
     }
 
     override fun showAddressErrorToast() {
-        Toast.makeText(context,"Заполните адрес в профиле для оформления заказа",Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            context,
+            "Заполните адрес в профиле для оформления заказа",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

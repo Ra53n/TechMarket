@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/recyclerview_background"
     android:orientation="vertical">
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
@@ -37,16 +38,16 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:layout_weight="2">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="21"
-            android:text="Итого:"
             android:layout_marginEnd="8dp"
+            android:layout_weight="21"
             android:gravity="end"
+            android:text="Итого:"
             android:textSize="32dp" />
 
         <TextView

@@ -135,7 +135,12 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
-                    this.setPadding(CHARACTERISTIC_ROW_PADDING, CHARACTERISTIC_ROW_PADDING, 0, CHARACTERISTIC_ROW_PADDING)
+                    this.setPadding(
+                        CHARACTERISTIC_ROW_PADDING,
+                        CHARACTERISTIC_ROW_PADDING,
+                        0,
+                        CHARACTERISTIC_ROW_PADDING
+                    )
                 }
             val characteristicTextView = TextView(context).apply {
                 this.text = c.key

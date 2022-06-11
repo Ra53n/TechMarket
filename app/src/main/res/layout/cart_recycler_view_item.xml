@@ -57,8 +57,8 @@
             <Button
                 android:id="@+id/cart_recycler_view_item_decrease_count"
                 android:layout_width="48dp"
-                android:layout_marginStart="16dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
                 android:backgroundTint="@color/white"
                 android:text="-"
                 android:textColor="@color/black"
@@ -84,10 +84,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cart_recycler_view_item_price"
                 android:layout_width="match_parent"
-                android:paddingEnd="32dp"
-                android:background="@drawable/back"
                 android:layout_height="match_parent"
+                android:background="@drawable/back"
                 android:gravity="center|right"
+                android:paddingEnd="32dp"
                 android:text="179 999"
                 android:textSize="28dp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -95,18 +95,18 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="8dp">
+            android:layout_marginVertical="8dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/cart_recycler_view_item_seller"
                 style="@style/catalog_textview"
                 android:layout_width="0dp"
-                android:textSize="20dp"
-                android:paddingStart="36dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7"
-                android:text="Выберете продавца" />
+                android:paddingStart="36dp"
+                android:text="Выберете продавца"
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/cart_recycler_view_item_seller_button"
@@ -126,8 +126,8 @@
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/teal_dark"
             android:padding="16dp"
-            android:textColor="@color/white"
             android:text="Подробнее"
+            android:textColor="@color/white"
             android:textSize="16dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

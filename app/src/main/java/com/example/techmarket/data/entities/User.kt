@@ -6,7 +6,7 @@ import java.util.*
 
 @Parcelize
 data class User(
-    val id : String = UUID.randomUUID().toString(),
+    val id: String = UUID.randomUUID().toString(),
     val email: String = "",
     val password: String = "",
     var name: String = "гость",

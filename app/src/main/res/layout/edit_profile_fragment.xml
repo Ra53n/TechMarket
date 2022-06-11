@@ -31,9 +31,9 @@
         android:id="@+id/edit_profile_address_et"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
+        android:hint="Адрес"
         app:layout_constraintBottom_toTopOf="@id/edit_profile_email_tv"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Адрес"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_profile_name_et" />
 

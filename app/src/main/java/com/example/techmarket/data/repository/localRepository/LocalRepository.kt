@@ -13,9 +13,9 @@ interface LocalRepository {
 
     fun getAllCartItems(): List<CartItemEntity>
 
-    fun updateCartItem(item: Item, user: User?, price : String?)
+    fun updateCartItem(item: Item, user: User?, price: String?)
 
-    fun addItemToCart(item: Item, user: User?,price: String?)
+    fun addItemToCart(item: Item, user: User?, price: String?)
 
     fun deleteItemFromCart(item: Item)
 

@@ -135,7 +135,10 @@ class AddItemFragment : BaseFragment(), AddItemView {
         for (s in list) {
             binding.characteristicContainer.addView(EditText(requireContext()).apply {
                 hint = s
-                layoutParams = ViewGroup.LayoutParams((300 * displayMetrics.density).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
+                layoutParams = ViewGroup.LayoutParams(
+                    (300 * displayMetrics.density).toInt(),
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
                 gravity = Gravity.CENTER
             })
         }

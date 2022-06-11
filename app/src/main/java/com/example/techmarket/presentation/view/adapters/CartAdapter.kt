@@ -115,7 +115,8 @@ class CartAdapter @Inject constructor(private val controller: Controller) :
             item.selectedSeller?.name?.let {
                 itemView.findViewById<TextView>(R.id.cart_recycler_view_item_seller).text = it
             }
-            itemView.findViewById<TextView>(R.id.cart_recycler_view_item_seller).setOnClickListener { sellerClickListener.onClick(it) }
+            itemView.findViewById<TextView>(R.id.cart_recycler_view_item_seller)
+                .setOnClickListener { sellerClickListener.onClick(it) }
         }
     }
 }

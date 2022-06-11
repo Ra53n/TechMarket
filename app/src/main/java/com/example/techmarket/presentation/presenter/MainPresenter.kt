@@ -7,7 +7,7 @@ import com.arellomobile.mvp.MvpPresenter
 import com.example.techmarket.Screens.details
 import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.entities.Promotion
-import com.example.techmarket.data.repository.RepositoryImpl
+import com.example.techmarket.data.repository.RemoteRepositoryImpl
 import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.presentation.view.main.MainView
 import com.github.terrakok.cicerone.Router
@@ -27,7 +27,7 @@ class MainPresenter : MvpPresenter<MainView>() {
     }
 
     @Inject
-    lateinit var repository: RepositoryImpl
+    lateinit var repository: RemoteRepositoryImpl
 
     @Inject
     lateinit var router: Router

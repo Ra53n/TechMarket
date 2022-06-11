@@ -33,6 +33,12 @@ class CompareFragment : BaseFragment(), CompareView {
 
     companion object {
         fun newInstance() = CompareFragment()
+        private const val CHARACTERISTICS_ROW_PADDING = 16
+        private const val CHARACTERISTICS_NAME_PADDING = 32
+        private const val CHARACTERISTICS_NAME_TEXT_SIZE = 24f
+        private const val CHARACTERISTICS_VALUE_TEXT_SIZE = 18f
+        private const val CATEGORY_TEXT_VIEW_PADDING = 64
+        private const val CATEGORY_TEXT_VIEW_TEXT_SIZE = 24f
     }
 
     @InjectPresenter
@@ -91,32 +97,39 @@ class CompareFragment : BaseFragment(), CompareView {
                     this.orientation = LinearLayout.VERTICAL
                 }
                 for (c in characteristics) {
-
-                    val linearRow =
+                    val characteristicsRow =
                         LinearLayout(context).apply {
-                            this.setPadding(16, 16, 0, 16)
+                            this.setPadding(
+                                CHARACTERISTICS_ROW_PADDING,
+                                CHARACTERISTICS_ROW_PADDING,
+                                0,
+                                CHARACTERISTICS_ROW_PADDING
+                            )
                         }
-
                     val characteristicNameTextView =
                         TextView(requireContext()).apply {
                             this.text = c
-                            this.textSize = 24f
-                            this.setPadding(32, 32, 0, 0)
+                            this.textSize = CHARACTERISTICS_NAME_TEXT_SIZE
+                            this.setPadding(
+                                CHARACTERISTICS_NAME_PADDING,
+                                CHARACTERISTICS_NAME_PADDING,
+                                0,
+                                0
+                            )
                         }
-
-                    val divider = MaterialDivider(requireContext())
-                    val divider2 = MaterialDivider(requireContext())
+                    val dividerFirst = MaterialDivider(requireContext())
+                    val dividerSecond = MaterialDivider(requireContext())
 
                     for (item in categoryList) {
                         val characteristicValueTextView = TextView(requireContext()).apply {
                             this.text = item.characteristic[c]
-                            this.textSize = 18f
+                            this.textSize = CHARACTERISTICS_VALUE_TEXT_SIZE
                             this.textAlignment = View.TEXT_ALIGNMENT_CENTER
                             this.gravity = Gravity.CENTER
 
                             this.layoutParams = LinearLayout.LayoutParams(
                                 displayMetrics!!.width / 2,
-                                ViewGroup.LayoutParams.WRAP_CONTENT
+                                ViewGroup.LayoutParams.MATCH_PARENT
                             )
                         }
 
@@ -127,20 +140,20 @@ class CompareFragment : BaseFragment(), CompareView {
                             )
                         }
 
-                        linearRow.addView(characteristicValueTextView)
+                        characteristicsRow.addView(characteristicValueTextView)
                         val verticalDivider =
                             View(requireContext()).apply { this.setBackgroundColor(Color.GRAY) }
 
-                        linearRow.addView(
+                        characteristicsRow.addView(
                             verticalDivider,
                             ViewGroup.LayoutParams(1, ViewGroup.LayoutParams.MATCH_PARENT)
                         )
                     }
                     with(characteristicLayout) {
                         addView(characteristicNameTextView)
-                        addView(divider)
-                        addView(linearRow)
-                        addView(divider2)
+                        addView(dividerFirst)
+                        addView(characteristicsRow)
+                        addView(dividerSecond)
                     }
                 }
 
@@ -166,8 +179,8 @@ class CompareFragment : BaseFragment(), CompareView {
 
         val categoryTextView = TextView(requireContext()).apply {
             this.text = category.category
-            this.setPadding(64, 64, 0, 0)
-            this.textSize = 24f
+            this.setPadding(CATEGORY_TEXT_VIEW_PADDING, CATEGORY_TEXT_VIEW_PADDING, 0, 0)
+            this.textSize = CATEGORY_TEXT_VIEW_TEXT_SIZE
         }
 
         with(binding.compareFragmentContainer) {

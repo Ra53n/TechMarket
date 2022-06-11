@@ -17,7 +17,9 @@ class ComparePresenter : MvpPresenter<CompareView>() {
     fun loadItems() {
         Thread {
             val list = localRepository.getAllCompareItems()
-            Handler(Looper.getMainLooper()).post { viewState.generateViews(list) }
+            if (list.isNotEmpty()) {
+                Handler(Looper.getMainLooper()).post { viewState.generateViews(list) }
+            }
         }.start()
     }
 

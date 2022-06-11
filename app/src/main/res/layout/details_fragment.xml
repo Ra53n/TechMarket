@@ -11,13 +11,23 @@
         android:orientation="vertical"
         android:paddingBottom="64dp">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
         <ImageView
             android:id="@+id/details_fragment_image"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_gravity="center|top"
-            android:layout_margin="16dp"
+            android:layout_marginVertical="16dp"
+            android:background="@color/white"
             tools:src="@drawable/img" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/recyclerview_background">
 
         <TextView
             android:id="@+id/details_fragment_description"
@@ -45,6 +55,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/details_fragment_rating_star"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="4dp"
@@ -74,13 +85,14 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/details_fragment_price"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/back"
                 android:gravity="center|left"
                 android:text="179 999"
                 android:textSize="28dp"
+                android:padding="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -90,13 +102,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toEndOf="@id/details_fragment_price"
                 android:background="@drawable/background_button"
                 android:gravity="center"
+                android:layout_marginStart="26dp"
                 android:padding="12dp"
                 android:src="@drawable/ic_baseline_favorite_border_24"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -129,6 +141,8 @@
             android:id="@+id/details_fragment_characteristic_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

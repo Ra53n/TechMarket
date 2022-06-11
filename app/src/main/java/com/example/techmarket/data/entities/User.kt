@@ -10,6 +10,7 @@ data class User(
     val email: String = "",
     val password: String = "",
     var name: String = "гость",
+    var address: String = "",
     val seller: Boolean = false,
     val admin: Boolean = false
 ) : Parcelable

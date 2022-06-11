@@ -57,6 +57,7 @@
             <Button
                 android:id="@+id/cart_recycler_view_item_decrease_count"
                 android:layout_width="48dp"
+                android:layout_marginStart="16dp"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/white"
                 android:text="-"
@@ -82,7 +83,9 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cart_recycler_view_item_price"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
+                android:paddingEnd="32dp"
+                android:background="@drawable/back"
                 android:layout_height="match_parent"
                 android:gravity="center|right"
                 android:text="179 999"
@@ -99,6 +102,8 @@
                 android:id="@+id/cart_recycler_view_item_seller"
                 style="@style/catalog_textview"
                 android:layout_width="0dp"
+                android:textSize="20dp"
+                android:paddingStart="36dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7"
                 android:text="Выберете продавца" />
@@ -119,8 +124,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/pink_light"
+            android:backgroundTint="@color/teal_dark"
             android:padding="16dp"
+            android:textColor="@color/white"
             android:text="Подробнее"
             android:textSize="16dp" />
 

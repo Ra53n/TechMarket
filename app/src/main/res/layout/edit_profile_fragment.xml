@@ -22,10 +22,20 @@
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:hint="Имя"
-        app:layout_constraintBottom_toTopOf="@id/edit_profile_email_tv"
+        app:layout_constraintBottom_toTopOf="@id/edit_profile_address_et"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_profile_title_tv" />
+
+    <EditText
+        android:id="@+id/edit_profile_address_et"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/edit_profile_email_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="Адрес"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_profile_name_et" />
 
     <TextView
         android:id="@+id/edit_profile_email_tv"
@@ -35,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@id/edit_profile_save_bt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_profile_name_et"
+        app:layout_constraintTop_toBottomOf="@id/edit_profile_address_et"
         tools:text="testEmail@mail.ru" />
 
     <Button
@@ -43,8 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="186dp"
+        android:background="@drawable/background_button"
         android:text="Сохранить"
-        android:background="@color/pink_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

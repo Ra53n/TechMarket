@@ -5,7 +5,8 @@
     android:layout_width="160dp"
     android:layout_height="320dp"
     android:layout_margin="8dp"
-    app:cardCornerRadius="32dp">
+    app:cardCornerRadius="32dp"
+    app:cardElevation="8dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="end"
-            android:layout_margin="8dp"
+            android:layout_margin="10dp"
             android:src="@drawable/heart" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -28,51 +29,59 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/recyclerview_background">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_margin="4dp"
-                android:src="@drawable/ic_baseline_star_outline_24" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/ic_baseline_star_outline_24" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/main_recycler_view_item_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="9.9"
+                    android:textSize="16dp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/main_recycler_view_item_rating"
+                android:id="@+id/main_recycler_view_item_description"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:text="6.7 Смартфон Apple iPhone 13 Pro Max 256 ГБ голубой "
+                android:textSize="12dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/main_recycler_view_item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="179 999"
+                android:textSize="16dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/main_recycler_view_item_add_to_cart"
+                style="@style/action_button"
+                android:layout_width="120dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center"
-                android:text="9.9"
+                android:background="@drawable/background_recyclerview_button"
+                android:text="В корзину"
                 android:textSize="16dp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/main_recycler_view_item_description"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_margin="8dp"
-            android:text="6.7 Смартфон Apple iPhone 13 Pro Max 256 ГБ голубой "
-            android:textSize="12dp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/main_recycler_view_item_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="179 999"
-            android:textSize="16dp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/main_recycler_view_item_add_to_cart"
-            style="@style/action_button"
-            android:layout_width="120dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:background="@color/pink_light"
-            android:text="В корзину"
-            android:textSize="16dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.cardview.widget.CardView>

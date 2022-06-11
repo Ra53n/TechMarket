@@ -43,4 +43,16 @@ class StringMapConverter {
         val gson = Gson()
         return gson.toJson(user)
     }
+
+    @TypeConverter
+    fun fromRating(value: String?): Map<String?, Float?>? {
+        val mapType: Type = object : TypeToken<Map<String?, Float?>?>() {}.type
+        return Gson().fromJson(value, mapType)
+    }
+
+    @TypeConverter
+    fun fromRatingMap(map: Map<String?, Float?>?): String? {
+        val gson = Gson()
+        return gson.toJson(map)
+    }
 }

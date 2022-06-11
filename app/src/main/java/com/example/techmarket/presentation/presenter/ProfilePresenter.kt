@@ -8,7 +8,7 @@ import com.example.techmarket.Screens.add
 import com.example.techmarket.Screens.compare
 import com.example.techmarket.Screens.login
 import com.example.techmarket.Screens.profile
-import com.example.techmarket.data.repository.RepositoryImpl
+import com.example.techmarket.data.repository.RemoteRepositoryImpl
 import com.example.techmarket.presentation.view.profile.ProfileView
 import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class ProfilePresenter : MvpPresenter<ProfileView>() {
     lateinit var router: Router
 
     @Inject
-    lateinit var repository: RepositoryImpl
+    lateinit var repository: RemoteRepositoryImpl
 
     fun onCompareClick() {
         router.navigateTo(compare())

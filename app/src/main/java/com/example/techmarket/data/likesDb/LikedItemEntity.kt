@@ -10,7 +10,7 @@ data class LikedItemEntity(
     val id: String,
     val description: String = "",
     val imageUrl: String = "",
-    val rating: Double = 0.0,
+    val rating: MutableMap<String, Float> = mutableMapOf(),
     val price: Int = 0,
     val category: Category = Category.Uncategory,
     val brand: String = "",

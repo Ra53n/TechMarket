@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:nestedScrollingEnabled="true">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingVertical="180dp">
 
-        <EditText
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="96dp"
+            android:text="Добавление товара"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_description"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="Description" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_image_url"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="Image url" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_image_price"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="Price" />
@@ -41,14 +51,16 @@
             android:id="@+id/characteristic_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical" />
 
         <Button
             android:id="@+id/button_add"
+            android:background="@drawable/background_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
-            android:layout_marginBottom="32dp"/>
+            android:layout_marginBottom="32dp"
+            android:text="Add" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

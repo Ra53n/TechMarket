@@ -5,8 +5,8 @@ import com.example.techmarket.App
 import com.example.techmarket.data.cartDb.CartItemsDatabase
 import com.example.techmarket.data.compareDb.CompareItemsDatabase
 import com.example.techmarket.data.likesDb.LikedItemsDatabase
-import com.example.techmarket.data.repository.Repository
-import com.example.techmarket.data.repository.RepositoryImpl
+import com.example.techmarket.data.repository.RemoteRepository
+import com.example.techmarket.data.repository.RemoteRepositoryImpl
 import com.example.techmarket.data.repository.localRepository.LocalRepository
 import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.di.provider.CartItemsProvider
@@ -22,7 +22,7 @@ class AppModule(app: App) : Module() {
         val cicerone = Cicerone.create()
         bind(Router::class.java).toInstance(cicerone.router)
         bind(NavigatorHolder::class.java).toInstance(cicerone.getNavigatorHolder())
-        bind(Repository::class.java).toInstance(RepositoryImpl())
+        bind(RemoteRepository::class.java).toInstance(RemoteRepositoryImpl())
         bind(LocalRepository::class.java).to(LocalRepositoryImpl::class.java)
         bind(Context::class.java).toInstance(app.applicationContext)
 

@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#010101</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pink_light_100">#ffeaf8</color>
     <color name="pink_light">#ffd2f1</color>
     <color name="pink">#ec70e8</color>
     <color name="pink_dark">#7CEC62E8</color>
@@ -15,4 +16,6 @@
     <color name="purple_dark">#1b0130</color>
     <color name="teal_dark">#9FCBE6</color>
     <color name="teal">#87cefa</color>
+    <color name="red_dark">#9f2943</color>
+    <color name="dark_green">#6b6a4e</color>
 </resources>

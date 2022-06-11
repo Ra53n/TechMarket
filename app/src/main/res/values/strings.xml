@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">Tech Market</string>
-    <string name="registration_button">Register</string>
+    <string name="registration_button">Регистрация</string>
     <string name="login_button">Войти</string>
-    <string name="registration_text_view">Registration</string>
-    <string name="login_text_view">Already has an account?</string>
+    <string name="registration_text_view">Регистрация</string>
+    <string name="login_text_view">Уже есть учетная запись?</string>
     <string name="navigation_menu_item_home">Главная</string>
     <string name="navigation_menu_item_cart">Корзина</string>
     <string name="navigation_menu_item_profile">Профиль</string>
+    <string name="user_already_exist">Аккаунт с такой почтой уже существует</string>
+    <string name="order_template">%s \nПочта заказчика - %s\nАдрес отправки заказа - %s</string>
+
 
     <string name="smartphones">Smartphones</string>
     <string name="tablets">Tablets</string>
@@ -25,4 +28,5 @@
     <string name="printers">Printers</string>
 
     <string name="hello_profile">Привет, %s!</string>
+    <string name="price">%s ₽</string>
 </resources>

@@ -5,7 +5,7 @@ import com.arellomobile.mvp.MvpPresenter
 import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.data.entities.Category
 import com.example.techmarket.data.entities.Item
-import com.example.techmarket.data.repository.RepositoryImpl
+import com.example.techmarket.data.repository.RemoteRepositoryImpl
 import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.presentation.view.filter.FilterView
 import com.google.firebase.database.ktx.getValue
@@ -24,7 +24,7 @@ class FilterPresenter : MvpPresenter<FilterView>() {
     }
 
     @Inject
-    lateinit var repository: RepositoryImpl
+    lateinit var repository: RemoteRepositoryImpl
 
     @Inject
     lateinit var localRepository: LocalRepositoryImpl

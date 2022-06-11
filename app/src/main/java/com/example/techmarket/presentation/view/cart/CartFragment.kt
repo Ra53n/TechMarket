@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -93,5 +94,9 @@ class CartFragment : BaseFragment(), CartView {
 
     override fun showNoCartItems() {
         binding.cartFragmentNoItemsTextView.visibility = View.VISIBLE
+    }
+
+    override fun showAddressErrorToast() {
+        Toast.makeText(context,"Заполните адрес в профиле для оформления заказа",Toast.LENGTH_SHORT).show()
     }
 }

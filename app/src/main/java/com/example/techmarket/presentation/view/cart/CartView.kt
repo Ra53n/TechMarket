@@ -13,4 +13,5 @@ interface CartView : MvpView {
     fun setTotalCost(cost: Int)
     fun sendOrder(intent: Intent)
     fun showNoCartItems()
+    fun showAddressErrorToast()
 }

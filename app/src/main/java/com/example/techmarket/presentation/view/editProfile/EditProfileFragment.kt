@@ -11,12 +11,11 @@ import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.App
 import com.example.techmarket.databinding.EditProfileFragmentBinding
 import com.example.techmarket.presentation.presenter.EditProfilePresenter
-import com.example.techmarket.presentation.presenter.ProfilePresenter
 import com.example.techmarket.presentation.view.base.BaseFragment
-import com.example.techmarket.presentation.view.profile.PROFILE_SCOPE
 import toothpick.Toothpick
 
 const val EDIT_PROFILE_SCOPE = "EDIT_PROFILE_SCOPE"
+
 class EditProfileFragment : BaseFragment(), EditProfileView {
     private var _binding: EditProfileFragmentBinding? = null
     private val binding get() = _binding!!
@@ -50,13 +49,19 @@ class EditProfileFragment : BaseFragment(), EditProfileView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindData()
-        binding.editProfileSaveBt.setOnClickListener { presenter.updateUser(binding.editProfileNameEt.text.toString()) }
+        binding.editProfileSaveBt.setOnClickListener {
+            presenter.updateUser(
+                binding.editProfileNameEt.text.toString(),
+                binding.editProfileAddressEt.text.toString()
+            )
+        }
     }
 
     private fun bindData() {
         with(binding) {
             App.currentUser?.let {
                 editProfileNameEt.text = Editable.Factory.getInstance().newEditable(it.name)
+                editProfileAddressEt.text = Editable.Factory.getInstance().newEditable(it.address)
                 editProfileEmailTv.text = it.email
             }
         }

@@ -30,7 +30,7 @@ class GmailSender() : javax.mail.Authenticator() {
         this.password = password
         val props = Properties()
         props.setProperty("mail.transport.protocol", "smtp")
-        props.setProperty("mail.smtp.host", "smtp.gmail.com")
+        props.setProperty("mail.smtp.host", "smtp.mail.ru")
         props.put("mail.smtp.starttls.enable", "true")
         props.put("mail.smtp.auth", "true")
         props.put("mail.smtp.port", "465")

@@ -9,9 +9,10 @@ import androidx.annotation.RequiresApi
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.techmarket.App
+import com.example.techmarket.R
 import com.example.techmarket.Screens
 import com.example.techmarket.data.entities.User
-import com.example.techmarket.data.repository.RepositoryImpl
+import com.example.techmarket.data.repository.RemoteRepositoryImpl
 import com.example.techmarket.presentation.view.authorization.registration.RegistrationView
 import com.github.terrakok.cicerone.Router
 import com.google.firebase.auth.FirebaseAuth
@@ -22,7 +23,7 @@ import javax.inject.Inject
 @InjectViewState
 class RegistrationPresenter : MvpPresenter<RegistrationView>() {
     @Inject
-    lateinit var repository: RepositoryImpl
+    lateinit var repository: RemoteRepositoryImpl
 
     @Inject
     lateinit var router: Router
@@ -44,7 +45,7 @@ class RegistrationPresenter : MvpPresenter<RegistrationView>() {
                     onRegistrationClick()
                     createUser(email, name, password, isSeller)
                 } else {
-                    Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.resources.getString(R.string.user_already_exist), Toast.LENGTH_SHORT).show()
                 }
                 viewState.hideProgressBar()
             }

@@ -1,5 +1,6 @@
 package com.example.techmarket.presentation.view.addItem
 
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import androidx.annotation.RequiresApi
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.techmarket.App
 import com.example.techmarket.R
@@ -127,10 +129,13 @@ class AddItemFragment : BaseFragment(), AddItemView {
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun addFieldsFromList(list: List<String>) {
+        val displayMetrics = requireContext().resources.displayMetrics
         for (s in list) {
             binding.characteristicContainer.addView(EditText(requireContext()).apply {
                 hint = s
+                layoutParams = ViewGroup.LayoutParams((300 * displayMetrics.density).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
                 gravity = Gravity.CENTER
             })
         }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/reg_fragment_background"
+    android:background="@drawable/background_toolbar"
     android:clickable="true"
     android:focusable="true">
 
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Seller"
+        android:text="Продавец"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +64,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/reg_fragment__bt_registration"
+        android:layout_width="200dp"
         style="@style/action_button"
-        android:background="@drawable/reg_fragment_bt_reg_background"
+        android:background="@drawable/background_button"
         android:text="@string/registration_button"
         app:layout_constraintBottom_toTopOf="@id/reg_fragment__tv_login"
         app:layout_constraintEnd_toEndOf="parent"

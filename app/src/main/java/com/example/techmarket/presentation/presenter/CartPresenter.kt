@@ -1,10 +1,13 @@
 package com.example.techmarket.presentation.presenter
 
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.example.techmarket.App
 import com.example.techmarket.BuildConfig
+import com.example.techmarket.R
 import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.entities.User
 import com.example.techmarket.data.mappers.EntityItemsMapper
@@ -16,11 +19,15 @@ import javax.inject.Inject
 
 @InjectViewState
 class CartPresenter : MvpPresenter<CartView>() {
+
     @Inject
     lateinit var localRepository: LocalRepositoryImpl
 
     @Inject
     lateinit var mapper: EntityItemsMapper
+
+    @Inject
+    lateinit var context: Context
 
     fun loadItems() {
         Thread {
@@ -59,18 +66,48 @@ class CartPresenter : MvpPresenter<CartView>() {
     }
 
     fun sendOrder() {
-        val sender = GmailSender("luckyfrost2301@gmail.com", BuildConfig.EMAIL_PASSWORD)
-        Thread {
-            val order = mutableListOf<String>()
-            order.addAll(
-                localRepository.getAllCartItems().map { "${it.description} - ${it.count}" })
-            sender.sendMail(
-                "Заказ",
-                order.toString(),
-                "luckyfrost2301@gmail.com",
-                "nikkon2001@mail.ru"
-            )
-        }.start()
+        App.currentUser?.let {
+            if (it.address.isNotEmpty()) {
+                val sender = GmailSender(SENDER, BuildConfig.EMAIL_PASSWORD)
+                Thread {
+                    val cartItems = localRepository.getAllCartItems()
+                    for (cartItem in cartItems) {
+                        if (cartItem.selectedSeller == null) Thread.currentThread().interrupt()
+                    }
+                    val mapOfSellerAndItems = mutableMapOf<String, MutableList<Item>>()
+                    for (item in cartItems) {
+                        if (!mapOfSellerAndItems.containsKey(item.selectedSeller!!.email)) {
+                            mapOfSellerAndItems[item.selectedSeller!!.email] =
+                                mutableListOf(mapper.convertCartItemToItem(item))
+                        } else {
+                            mapOfSellerAndItems[item.selectedSeller!!.email]!!.add(
+                                mapper.convertCartItemToItem(
+                                    item
+                                )
+                            )
+                        }
+                    }
+                    for (entry in mapOfSellerAndItems.entries) {
+                        val order = mutableListOf<String>()
+                        order.addAll(
+                            entry.value.map { "${it.description} - ${it.count}" })
+                        sender.sendMail(
+                            "Заказ",
+                            context.resources.getString(
+                                R.string.order_template,
+                                order.toString(),
+                                it.email,
+                                it.address
+                            ),
+                            SENDER,
+                            entry.key
+                        )
+                    }
+                }.start()
+            } else {
+                viewState.showAddressErrorToast()
+            }
+        }
     }
 
     fun changeSeller(item: Item, seller: User, price: String) {
@@ -78,5 +115,10 @@ class CartPresenter : MvpPresenter<CartView>() {
             localRepository.updateCartItem(item, seller, price)
             loadItems()
         }.start()
+    }
+
+    companion object {
+        private const val RECIPIENT = "riki.kike@mail.ru"
+        private const val SENDER = "nikkon2001@mail.ru"
     }
 }

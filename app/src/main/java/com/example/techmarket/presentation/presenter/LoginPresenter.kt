@@ -11,7 +11,7 @@ import com.arellomobile.mvp.MvpPresenter
 import com.example.techmarket.App
 import com.example.techmarket.Screens
 import com.example.techmarket.data.entities.User
-import com.example.techmarket.data.repository.RepositoryImpl
+import com.example.techmarket.data.repository.RemoteRepositoryImpl
 import com.example.techmarket.presentation.view.authorization.login.LoginView
 import com.github.terrakok.cicerone.Router
 import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +27,7 @@ class LoginPresenter : MvpPresenter<LoginView>() {
     lateinit var context: Context
 
     @Inject
-    lateinit var repository: RepositoryImpl
+    lateinit var repository: RemoteRepositoryImpl
 
     private val mAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val handler = Handler(Looper.getMainLooper())

@@ -9,12 +9,10 @@ import com.example.techmarket.Screens
 import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.entities.User
 import com.example.techmarket.data.entities.UserPricePair
-import com.example.techmarket.data.repository.RepositoryImpl
+import com.example.techmarket.data.repository.RemoteRepositoryImpl
 import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.presentation.view.details.DetailsView
 import com.github.terrakok.cicerone.Router
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 
 @InjectViewState
@@ -23,12 +21,10 @@ class DetailsPresenter : MvpPresenter<DetailsView>() {
     lateinit var localRepository: LocalRepositoryImpl
 
     @Inject
-    lateinit var repository: RepositoryImpl
+    lateinit var repository: RemoteRepositoryImpl
 
     @Inject
     lateinit var router: Router
-
-    private val database = Firebase.database.reference
 
     fun likeItem(item: Item) {
         Thread {
@@ -72,13 +68,12 @@ class DetailsPresenter : MvpPresenter<DetailsView>() {
             )
             sellers = map
         }
-        database.child("items").child(item.id).setValue(newItem)
+        repository.addSellerToItem(item)
         router.navigateTo(Screens.details(newItem))
     }
 
     fun rateItem(item: Item, rating: Float) {
-        item.rating.putIfAbsent(App.currentUser!!.id, rating)
-        database.child("items").child(item.id).setValue(item)
+        repository.rateItem(item, rating)
         router.navigateTo(Screens.details(item))
     }
 }

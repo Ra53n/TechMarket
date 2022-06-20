@@ -1,12 +1,11 @@
-package com.example.techmarket.presentation.view.details
+package com.example.techmarket.presentation.view.filter
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import com.example.techmarket.data.entities.Item
 
 @StateStrategyType(AddToEndStrategy::class)
-interface DetailsView : MvpView {
-    fun setContainsCompares(contains: Boolean)
-    fun setLikeForItem(contains: Boolean)
-    fun itemAddedToCart()
+interface FilterSlidingPaneView : MvpView {
+    fun addFilterViews(list: List<String>)
 }

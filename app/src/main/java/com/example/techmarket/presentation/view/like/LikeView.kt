@@ -8,4 +8,5 @@ import com.example.techmarket.data.entities.Item
 @StateStrategyType(AddToEndStrategy::class)
 interface LikeView : MvpView {
     fun setData(list: List<Item>)
+    fun itemAddedToCart()
 }

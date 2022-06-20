@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,13 +12,8 @@ import coil.load
 import com.example.techmarket.R
 import com.example.techmarket.data.entities.Item
 
-class LikeAdapter(private val controller: Controller) :
+class LikeAdapter(private val controller: AdapterController) :
     RecyclerView.Adapter<LikeAdapter.LikeViewHolder>() {
-
-    interface Controller {
-        fun onItemClick(item: Item)
-        fun onDeleteClick(item: Item)
-    }
 
     private var data: List<Item> = listOf()
 
@@ -47,8 +43,24 @@ class LikeAdapter(private val controller: Controller) :
                 .load(item.imageUrl)
             itemView.findViewById<TextView>(R.id.like_recycler_view_item_price).text =
                 item.price.toString()
+            with(itemView.findViewById<CheckBox>(R.id.like_recycler_view_item_compare)) {
+                isChecked = controller.isItemContainsCompare(item)
+                setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        controller.addItemToCompare(item)
+                    } else {
+                        controller.deleteItemFromCompare(item)
+                    }
+                }
+            }
+            itemView.findViewById<TextView>(R.id.like_recycler_view_item_rating).text =
+                if (item.rating.isNotEmpty())
+                    item.rating.values.average().toString() else "Н/Р"
             itemView.findViewById<Button>(R.id.like_recycler_view_item_unlike)
                 .setOnClickListener { controller.onDeleteClick(item) }
+            itemView.setOnClickListener { controller.onItemClick(item) }
+            itemView.findViewById<Button>(R.id.like_recycler_view_item_buy)
+                .setOnClickListener { controller.addToCart(item,null,null) }
         }
     }
 }

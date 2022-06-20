@@ -35,4 +35,6 @@ class RemoteRepositoryImpl @Inject constructor() : RemoteRepository {
         item.rating.putIfAbsent(App.currentUser!!.id, rating)
         database.child("items").child(item.id).setValue(item)
     }
+
+    override fun getBrands() = database.child("brands").get()
 }

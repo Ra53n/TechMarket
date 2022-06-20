@@ -118,16 +118,15 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/cart_recycler_view_item_buy"
+            android:id="@+id/cart_recycler_view_item_details"
             style="@style/action_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/teal_dark"
+            android:background="@drawable/background_button"
             android:padding="16dp"
             android:text="Подробнее"
-            android:textColor="@color/white"
             android:textSize="16dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

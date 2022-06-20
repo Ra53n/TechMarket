@@ -13,6 +13,7 @@ import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.entities.Promotion
 import com.example.techmarket.databinding.MainFragmentBinding
 import com.example.techmarket.presentation.presenter.MainPresenter
+import com.example.techmarket.presentation.view.adapters.BrandAdapter
 import com.example.techmarket.presentation.view.adapters.CategoryAdapter
 import com.example.techmarket.presentation.view.adapters.MainFragmentAdapter
 import com.example.techmarket.presentation.view.adapters.PromotionAdapter
@@ -46,6 +47,7 @@ class MainFragment : BaseFragment(), MainView {
     private val adapter = MainFragmentAdapter(controller)
     private lateinit var promotionAdapter: PromotionAdapter
     private val categoryAdapter = CategoryAdapter()
+    private val brandAdapter = BrandAdapter()
 
     companion object {
         fun newInstance() = MainFragment()
@@ -90,10 +92,13 @@ class MainFragment : BaseFragment(), MainView {
             mainFragmentPromotionRecyclerView.layoutManager = linearLayout()
             mainFragmentCategoryRecyclerView.adapter = categoryAdapter
             mainFragmentCategoryRecyclerView.layoutManager = linearLayout()
+            mainFragmentBrandsRecyclerView.adapter = brandAdapter
+            mainFragmentBrandsRecyclerView.layoutManager = linearLayout()
         }
         presenter.getItemsFromServer()
         presenter.loadPromotions()
         presenter.loadCategories()
+        presenter.loadBrands()
     }
 
     override fun loadItems(list: List<Item>) {
@@ -106,6 +111,10 @@ class MainFragment : BaseFragment(), MainView {
 
     override fun loadCategories(list: List<Category>) {
         categoryAdapter.setItems(list)
+    }
+
+    override fun loadBrands(list: List<String>) {
+        brandAdapter.setItems(list)
     }
 
 }

@@ -8,4 +8,5 @@ import com.example.techmarket.data.entities.Item
 @StateStrategyType(AddToEndStrategy::class)
 interface FilterView : MvpView {
     fun loadItems(list: List<Item>)
+    fun showError(error: String)
 }

@@ -46,9 +46,10 @@ object Screens {
         CatalogFragment.newInstance()
     }
 
-    fun filter(category: Category) = FragmentScreen {
-        FilterFragment.newInstance(category)
-    }
+    fun filter(category: Category, characteristics: Map<String, String> = emptyMap()) =
+        FragmentScreen {
+            FilterFragment.newInstance(category, characteristics)
+        }
 
     fun like() = FragmentScreen {
         LikeFragment.newInstance()

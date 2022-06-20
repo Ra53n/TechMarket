@@ -94,14 +94,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/catalog_recycler_view_item_like"
                     style="@style/action_button"
                     android:layout_width="54dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:background="@drawable/background_button"
-                    android:drawableTop="@drawable/ic_baseline_favorite_border_24"
+                    android:src="@drawable/ic_baseline_favorite_24"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/catalog_recycler_view_item_buy"

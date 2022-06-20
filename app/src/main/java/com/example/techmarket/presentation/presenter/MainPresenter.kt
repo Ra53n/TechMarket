@@ -60,7 +60,13 @@ class MainPresenter : MvpPresenter<MainView>() {
 
     fun likeItem(item: Item) {
         Thread {
-            localRepository.likeItem(item)
+            val contains = localRepository.isItemLiked(item)
+            if (contains) {
+                localRepository.deleteLikedItems(item)
+            } else {
+                localRepository.likeItem(item)
+            }
+            likeItems = localRepository.getAllLikedItems()
         }.start()
     }
 
@@ -68,6 +74,7 @@ class MainPresenter : MvpPresenter<MainView>() {
         Thread {
             localRepository.addItemToCart(item, null, null)
         }.start()
+        viewState.itemAddedToCart()
     }
 
     fun onItemClick(item: Item) {
@@ -75,6 +82,13 @@ class MainPresenter : MvpPresenter<MainView>() {
     }
 
     fun isItemLiked(item: Item): Boolean {
+        Thread.sleep(300)
         return likeItems.map { it.id }.contains(item.id)
+    }
+
+    fun loadBrands() {
+        repository.getBrands().addOnSuccessListener {
+            it.getValue<List<String>>()?.let { viewState.loadBrands(it) }
+        }
     }
 }

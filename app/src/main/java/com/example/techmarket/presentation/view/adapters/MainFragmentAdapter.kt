@@ -36,6 +36,14 @@ class MainFragmentAdapter(private val controller: Controller) :
         holder.bind(data[position])
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun getItemCount(): Int {
         return data.size
     }
@@ -56,10 +64,10 @@ class MainFragmentAdapter(private val controller: Controller) :
                 with(findViewById<ImageView>(R.id.main_recycler_view_item_like)) {
                     setOnClickListener {
                         controller.onLikeItem(item)
-                        changeItemToLiked(itemView)
+                        changeItemToLiked(item)
                     }
                     if (controller.isItemLiked(item)) {
-                        changeItemToLiked(itemView)
+                        changeItemToLiked(item)
                     }
                 }
                 findViewById<Button>(R.id.main_recycler_view_item_add_to_cart).setOnClickListener {
@@ -70,14 +78,15 @@ class MainFragmentAdapter(private val controller: Controller) :
                 setOnClickListener { controller.onItemClick(item) }
             }
         }
-    }
 
-    private fun changeItemToLiked(view: View) {
-        with(view.findViewById<ImageView>(R.id.main_recycler_view_item_like)) {
-            setImageDrawable(
-                resources.getDrawable(R.drawable.ic_baseline_favorite_24)
-            )
-            setColorFilter(resources.getColor(R.color.pink_light))
+        private fun changeItemToLiked(item: Item) {
+            with(itemView.findViewById<ImageView>(R.id.main_recycler_view_item_like)) {
+                if (controller.isItemLiked(item)) {
+                    setColorFilter(resources.getColor(R.color.pink_light))
+                } else {
+                    setColorFilter(resources.getColor(R.color.gray))
+                }
+            }
         }
     }
 }

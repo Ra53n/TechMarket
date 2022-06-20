@@ -13,5 +13,7 @@ interface MainView : MvpView {
     fun loadItems(list: List<Item>)
     fun loadPromotions(list: List<Promotion>)
     fun loadCategories(list: List<Category>)
+    fun loadBrands(list: List<String>)
     fun startActivity(intent: Intent)
+    fun itemAddedToCart()
 }

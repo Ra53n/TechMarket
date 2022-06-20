@@ -8,12 +8,14 @@ import com.arellomobile.mvp.MvpPresenter
 import com.example.techmarket.App
 import com.example.techmarket.BuildConfig
 import com.example.techmarket.R
+import com.example.techmarket.Screens
 import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.entities.User
 import com.example.techmarket.data.mappers.EntityItemsMapper
 import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.presentation.utils.GmailSender
 import com.example.techmarket.presentation.view.cart.CartView
+import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
 
 
@@ -28,6 +30,9 @@ class CartPresenter : MvpPresenter<CartView>() {
 
     @Inject
     lateinit var context: Context
+
+    @Inject
+    lateinit var router: Router
 
     fun loadItems() {
         Thread {
@@ -115,6 +120,10 @@ class CartPresenter : MvpPresenter<CartView>() {
             localRepository.updateCartItem(item, seller, price)
             loadItems()
         }.start()
+    }
+
+    fun onItemClick(item: Item) {
+        router.navigateTo(Screens.details(item))
     }
 
     companion object {

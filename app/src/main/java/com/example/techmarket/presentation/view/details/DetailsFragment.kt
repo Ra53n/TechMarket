@@ -29,22 +29,6 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
     private var _binding: DetailsFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val controller = object : SellersAdapter.Controller {
-        override fun addToCart(item: Item, user: User, price: String) {
-            presenter.addToCart(item, user, price)
-        }
-
-    }
-
-    private val sellersAdapter = SellersAdapter(item, controller)
-
-    companion object {
-        fun newInstance(item: Item) = DetailsFragment(item)
-        private const val CHARACTERISTIC_TEXT_SIZE = 18f
-        private const val CHARACTERISTIC_ROW_PADDING = 32
-        private const val VALUE_TEXT_VIEW_PADDING = 64
-    }
-
     @InjectPresenter
     lateinit var presenter: DetailsPresenter
 
@@ -53,6 +37,14 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
         Toothpick.openScopes(APP_SCOPE, DETAILS_SCOPE)
             .getInstance(DetailsPresenter::class.java)
             .also { Toothpick.closeScope(DETAILS_SCOPE) }
+
+    private val controller = object : SellersAdapter.Controller {
+        override fun addToCart(item: Item, user: User, price: String) {
+            presenter.addToCart(item, user, price)
+        }
+    }
+
+    private val sellersAdapter = SellersAdapter(item, controller)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,20 +57,6 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
             }
         }
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.details_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_sell_item -> {
-                showSellersAddingDialog()
-            }
-        }
-        return true
     }
 
     override fun onDestroy() {
@@ -100,9 +78,15 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
                 presenter.deleteFromCompare(item)
             }
         }
+        presenter.setLiked(item)
         binding.detailsFragmentSellersRv.adapter = sellersAdapter
         binding.detailsFragmentSellersRv.layoutManager = LinearLayoutManager(context)
-
+        App.currentUser?.let {
+            if (it.seller) {
+                binding.toolbar.sellItem.visibility = View.VISIBLE
+                binding.toolbar.sellItem.setOnClickListener { showSellersAddingDialog() }
+            }
+        }
         sellersAdapter.setItems(item.sellers)
     }
 
@@ -167,6 +151,18 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
         binding.detailsFragmentCompare.isChecked = contains
     }
 
+    override fun setLikeForItem(contains: Boolean) {
+        changeItemToLiked(contains)
+    }
+
+    private fun changeItemToLiked(liked: Boolean) {
+        if (liked) {
+            binding.detailsFragmentLike.setColorFilter(resources.getColor(R.color.pink_light))
+        } else {
+            binding.detailsFragmentLike.setColorFilter(resources.getColor(R.color.gray))
+        }
+    }
+
     private fun showSellersAddingDialog() {
         val builder = AlertDialog.Builder(requireContext())
         val editText = EditText(requireContext()).apply { this.hint = "Введите вашу цену!" }
@@ -207,5 +203,12 @@ class DetailsFragment(private val item: Item) : BaseFragment(), DetailsView {
                 dialog.cancel()
             }
         builder.create().show()
+    }
+
+    companion object {
+        fun newInstance(item: Item) = DetailsFragment(item)
+        private const val CHARACTERISTIC_TEXT_SIZE = 18f
+        private const val CHARACTERISTIC_ROW_PADDING = 32
+        private const val VALUE_TEXT_VIEW_PADDING = 64
     }
 }

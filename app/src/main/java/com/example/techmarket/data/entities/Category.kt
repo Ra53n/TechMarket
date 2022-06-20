@@ -1,6 +1,9 @@
 package com.example.techmarket.data.entities
 
-enum class Category(val category: String) {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
+enum class Category(val category: String)  {
     Uncategory("Uncategory"),
 
     Smartphones("Smartphones"),

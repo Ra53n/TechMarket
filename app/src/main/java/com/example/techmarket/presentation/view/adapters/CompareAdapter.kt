@@ -15,8 +15,11 @@ class CompareAdapter(private val controller: Controller) :
     RecyclerView.Adapter<CompareAdapter.CompareViewHolder>() {
 
     interface Controller {
+        fun onLikeItem(item: Item)
         fun onItemClick(item: Item)
+        fun addToCart(item: Item)
         fun onDeleteItemClick(item: Item)
+        fun isItemLiked(item: Item): Boolean
     }
 
     private var data: List<Item> = listOf()

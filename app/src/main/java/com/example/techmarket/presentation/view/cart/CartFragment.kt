@@ -28,7 +28,7 @@ class CartFragment : BaseFragment(), CartView {
     private lateinit var adapter: CartAdapter
     private val controller = object : CartAdapter.Controller {
         override fun onItemClick(item: Item) {
-            TODO("Not yet implemented")
+            presenter.onItemClick(item)
         }
 
         override fun onDeleteClick(item: Item) {

@@ -75,6 +75,8 @@ class CartAdapter @Inject constructor(private val controller: Controller) :
             itemView.findViewById<EditText>(R.id.cart_recycler_view_item_count)
                 .text = Editable.Factory.getInstance().newEditable(item.count.toString())
 
+            itemView.findViewById<Button>(R.id.cart_recycler_view_item_details).setOnClickListener { controller.onItemClick(mapper.convertCartItemToItem(item)) }
+
             itemView.findViewById<Button>(R.id.cart_recycler_view_item_increase_count)
                 .setOnClickListener {
                     controller.onChangesCountClick(

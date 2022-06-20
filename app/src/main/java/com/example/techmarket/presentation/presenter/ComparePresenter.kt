@@ -4,15 +4,20 @@ import android.os.Handler
 import android.os.Looper
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.example.techmarket.Screens
 import com.example.techmarket.data.entities.Item
 import com.example.techmarket.data.repository.localRepository.LocalRepositoryImpl
 import com.example.techmarket.presentation.view.compare.CompareView
+import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
 class ComparePresenter : MvpPresenter<CompareView>() {
     @Inject
     lateinit var localRepository: LocalRepositoryImpl
+
+    @Inject
+    lateinit var router: Router
 
     fun loadItems() {
         Thread {
@@ -30,15 +35,22 @@ class ComparePresenter : MvpPresenter<CompareView>() {
         loadItems()
     }
 
-    fun addToCompare(item: Item) {
-        Thread {
-            localRepository.addItemToCompare(item)
-        }.start()
+    fun onItemClick(item: Item) {
+        router.navigateTo(Screens.details(item))
     }
 
-    fun deleteFromCompare(item: Item) {
+    fun addToCart(item: Item) {
         Thread {
-            localRepository.deleteCompareItem(item)
+            localRepository.addItemToCart(item, null, null)
         }.start()
+        viewState.itemAddedToCart()
+    }
+
+    fun likeItem(item: Item){
+        
+    }
+
+    fun isItemLiked(item: Item): Boolean {
+        return localRepository.getAllLikedItems().map { it.id }.contains(item.id)
     }
 }

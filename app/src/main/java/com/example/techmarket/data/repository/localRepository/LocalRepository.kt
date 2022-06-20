@@ -26,4 +26,6 @@ interface LocalRepository {
     fun deleteCompareItem(item: Item)
 
     fun isItemContainsCompares(item: Item): Boolean
+
+    fun isItemLiked(item: Item) : Boolean
 }

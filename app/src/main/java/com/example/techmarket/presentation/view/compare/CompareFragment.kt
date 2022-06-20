@@ -51,13 +51,25 @@ class CompareFragment : BaseFragment(), CompareView {
             .also { Toothpick.closeScope(COMPARE_SCOPE) }
 
     private val controller = object : CompareAdapter.Controller {
-        override fun onItemClick(item: Item) {
+        override fun onLikeItem(item: Item) {
             TODO("Not yet implemented")
+        }
+
+        override fun onItemClick(item: Item) {
+            presenter.onItemClick(item)
+        }
+
+        override fun addToCart(item: Item) {
+            presenter.addToCart(item)
         }
 
         override fun onDeleteItemClick(item: Item) {
             presenter.deleteItem(item)
             binding.compareFragmentContainer.removeAllViews()
+        }
+
+        override fun isItemLiked(item: Item): Boolean {
+            return presenter.isItemLiked(item)
         }
 
     }

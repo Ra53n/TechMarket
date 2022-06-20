@@ -26,16 +26,31 @@ class DetailsPresenter : MvpPresenter<DetailsView>() {
     @Inject
     lateinit var router: Router
 
+    private val handler = Handler(Looper.getMainLooper())
+
     fun likeItem(item: Item) {
         Thread {
-            localRepository.likeItem(item)
+            val contains = localRepository.isItemLiked(item)
+            if (contains) {
+                localRepository.deleteLikedItems(item)
+            } else {
+                localRepository.likeItem(item)
+            }
+            setLiked(item)
         }.start()
     }
 
     fun setCheckCompare(item: Item) {
         Thread {
             val contains = localRepository.isItemContainsCompares(item)
-            Handler(Looper.getMainLooper()).post { viewState.setContainsCompares(contains) }
+            handler.post { viewState.setContainsCompares(contains) }
+        }.start()
+    }
+
+    fun setLiked(item: Item) {
+        Thread {
+            val contains = localRepository.isItemLiked(item)
+            handler.post { viewState.setLikeForItem(contains) }
         }.start()
     }
 
@@ -49,6 +64,7 @@ class DetailsPresenter : MvpPresenter<DetailsView>() {
         Thread {
             localRepository.addItemToCart(item, user, price)
         }.start()
+        viewState.itemAddedToCart()
     }
 
     fun addToCompare(item: Item) {

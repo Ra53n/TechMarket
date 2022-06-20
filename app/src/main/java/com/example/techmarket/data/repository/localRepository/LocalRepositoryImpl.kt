@@ -73,6 +73,10 @@ class LocalRepositoryImpl @Inject constructor(
     }
 
     override fun isItemContainsCompares(item: Item): Boolean {
-        return getAllCompareItems().contains(item)
+        return getAllCompareItems().map { it.id }.contains(item.id)
+    }
+
+    override fun isItemLiked(item: Item): Boolean {
+        return getAllLikedItems().map { it.id }.contains(item.id)
     }
 }

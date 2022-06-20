@@ -8,4 +8,5 @@ import com.example.techmarket.data.entities.Item
 @StateStrategyType(AddToEndStrategy::class)
 interface CompareView : MvpView {
     fun generateViews(list: List<Item>)
+    fun itemAddedToCart()
 }

@@ -3,10 +3,11 @@ package com.example.techmarket.presentation.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.techmarket.R
@@ -20,6 +21,8 @@ class FilterAdapter(private val controller: Controller) :
         fun deleteItemFromCompare(item: Item)
         fun addItemToCompare(item: Item)
         fun isItemContainsCompare(item: Item): Boolean
+        fun isItemLiked(item: Item): Boolean
+        fun onItemClick(item: Item)
     }
 
     private var data: List<Item> = listOf()
@@ -48,10 +51,19 @@ class FilterAdapter(private val controller: Controller) :
                 item.description
             itemView.findViewById<ImageView>(R.id.catalog_recycler_view_item_image)
                 .load(item.imageUrl)
+            itemView.findViewById<AppCompatTextView>(R.id.catalog_recycler_view_item_rating).text =
+                if (item.rating.isNotEmpty())
+                    item.rating.values.average().toString() else "Н/Р"
             itemView.findViewById<TextView>(R.id.catalog_recycler_view_item_price).text =
                 item.price.toString()
-            itemView.findViewById<Button>(R.id.catalog_recycler_view_item_like)
-                .setOnClickListener { controller.likeItem(item) }
+            with(itemView.findViewById<AppCompatImageView>(R.id.catalog_recycler_view_item_like)) {
+                changeColorToLikedItem(item)
+                setOnClickListener {
+                    controller.likeItem(item)
+                    changeColorToLikedItem(item)
+                }
+            }
+            itemView.setOnClickListener { controller.onItemClick(item) }
             with(itemView.findViewById<CheckBox>(R.id.catalog_recycler_view_item_compare)) {
                 isChecked = controller.isItemContainsCompare(item)
                 setOnCheckedChangeListener { buttonView, isChecked ->
@@ -62,7 +74,16 @@ class FilterAdapter(private val controller: Controller) :
                     }
                 }
             }
+        }
 
+        private fun changeColorToLikedItem(item: Item) {
+            with(itemView.findViewById<AppCompatImageView>(R.id.catalog_recycler_view_item_like)) {
+                if (controller.isItemLiked(item)) {
+                    setColorFilter(resources.getColor(R.color.pink_light))
+                } else {
+                    setColorFilter(resources.getColor(R.color.gray))
+                }
+            }
         }
     }
 }

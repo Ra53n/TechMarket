@@ -6,6 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#010101</color>
+    <color name="gray">@android:color/darker_gray</color>
     <color name="white">#FFFFFFFF</color>
     <color name="pink_light_100">#ffeaf8</color>
     <color name="pink_light">#ffd2f1</color>

@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.techmarket.APP_SCOPE
 import com.example.techmarket.data.entities.Item
+import com.example.techmarket.data.entities.User
 import com.example.techmarket.databinding.LikeFragmentBinding
 import com.example.techmarket.presentation.presenter.LikePresenter
+import com.example.techmarket.presentation.view.adapters.AdapterController
 import com.example.techmarket.presentation.view.adapters.LikeAdapter
 import com.example.techmarket.presentation.view.base.BaseFragment
 import toothpick.Toothpick
@@ -21,13 +24,29 @@ class LikeFragment : BaseFragment(), LikeView {
     private var _binding: LikeFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: LikeAdapter
-    private val controller = object : LikeAdapter.Controller {
+    private val controller = object : AdapterController {
         override fun onItemClick(item: Item) {
-            TODO("Not yet implemented")
+            presenter.onItemClick(item)
         }
 
         override fun onDeleteClick(item: Item) {
             presenter.deleteLikedItem(item)
+        }
+
+        override fun isItemContainsCompare(item: Item): Boolean {
+            return presenter.isItemContainsCompare(item)
+        }
+
+        override fun deleteItemFromCompare(item: Item) {
+            presenter.deleteFromCompare(item)
+        }
+
+        override fun addToCart(item: Item, user: User?, price: String?) {
+            presenter.addToCart(item, user, price)
+        }
+
+        override fun addItemToCompare(item: Item) {
+            presenter.addToCompare(item)
         }
     }
 

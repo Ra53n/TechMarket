@@ -14,4 +14,5 @@ interface RemoteRepository {
     fun updateUser(user: User)
     fun addSellerToItem(item: Item)
     fun rateItem(item: Item, rating: Float)
+    fun getBrands() : Task<DataSnapshot>
 }
